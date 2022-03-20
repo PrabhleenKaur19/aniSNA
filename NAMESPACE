@@ -2,5 +2,9 @@
 
 export(get_interactions)
 export(get_network_summary)
+export(get_spatial_threshold)
+export(network_from_interactions)
 importFrom(Rcpp,sourceCpp)
+importFrom(magrittr,"%>%")
+importFrom(rlang,.data)
 useDynLib(aniSNA, .registration = TRUE)

@@ -9,10 +9,14 @@ Description: Functions to obtain animal social networks from GPS telemetry data 
     analyse them statistically. 
 License: MIT + file LICENSE
 Imports: 
+    dplyr,
     igraph,
     lubridate,
+    magrittr,
     parallel,
-    Rcpp
+    Rcpp,
+    rlang,
+    segmented
 LinkingTo: Rcpp
 RoxygenNote: 7.1.2
 Suggests: 
