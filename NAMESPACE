@@ -6,7 +6,6 @@ export(get_network_summary)
 export(get_spatial_threshold)
 export(network_from_interactions)
 export(network_subsamples)
-<<<<<<< HEAD
 export(obtain_bootstrapped_samples)
 export(obtain_two_bs_versions)
 export(plot_correlation_results)
@@ -16,9 +15,6 @@ export(plot_subsamples)
 export(plot_width_CI)
 export(regression_slope_analyze)
 export(width_CI)
-=======
-export(plot_subsamples)
->>>>>>> 1ed78cade1b7fbee9c31594c3adf431066e0ab38
 importFrom(Rcpp,sourceCpp)
 importFrom(magrittr,"%>%")
 importFrom(rlang,.data)

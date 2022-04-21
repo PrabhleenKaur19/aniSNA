@@ -14,7 +14,6 @@ network_subsamples(
 \arguments{
 \item{network}{An igraph graph object consisting of observed network}
 
-<<<<<<< HEAD
 \item{n_simulations}{Number of sub-samples to be obtained at each level}
 
 \item{subsampling_proportion}{A vector depicting proportions of sub-sampled nodes}
@@ -25,17 +24,6 @@ network_subsamples(
 A list of network metrics. Each element of list is a matrix whose columns 
         correspond to subsampling_proportion and rows correspond to n_simulations. 
         The entries of the matrix provide values of the corresponding metric.
-=======
-\item{n_simulations}{Number of sub-samples}
-
-\item{subsampling_proportion}{A vector depicting proportions of sub-sampled nodes}
-
-\item{network_metrics}{A vector depicting names of network metrics}
-}
-\value{
-A list of network metrics. Each element of list is a matrix whose columns 
-        correspond to subsampling_proportion and rows correspond to n_simulations
->>>>>>> 1ed78cade1b7fbee9c31594c3adf431066e0ab38
 }
 \description{
 To generate subsamples and obtain network metrics of the subsamples
