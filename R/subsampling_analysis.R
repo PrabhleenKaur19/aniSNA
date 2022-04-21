@@ -3,6 +3,7 @@
 #' To generate subsamples and obtain network metrics of the subsamples
 #'
 #' @param network An igraph graph object consisting of observed network
+<<<<<<< HEAD
 #' @param n_simulations Number of sub-samples to be obtained at each level
 #' @param subsampling_proportion A vector depicting proportions of sub-sampled nodes
 #' @param network_metrics A vector depicting names of global network metrics 
@@ -10,6 +11,14 @@
 #' @return A list of network metrics. Each element of list is a matrix whose columns 
 #'         correspond to subsampling_proportion and rows correspond to n_simulations. 
 #'         The entries of the matrix provide values of the corresponding metric. 
+=======
+#' @param n_simulations Number of sub-samples 
+#' @param subsampling_proportion A vector depicting proportions of sub-sampled nodes
+#' @param network_metrics A vector depicting names of network metrics 
+#'
+#' @return A list of network metrics. Each element of list is a matrix whose columns 
+#'         correspond to subsampling_proportion and rows correspond to n_simulations
+>>>>>>> 1ed78cade1b7fbee9c31594c3adf431066e0ab38
 #' @export
 #'
 #' @examples
