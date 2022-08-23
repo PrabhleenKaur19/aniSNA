@@ -19,7 +19,8 @@ Imports:
     rlang,
     segmented,
     stats,
-    stringr
+    stringr,
+    utils
 LinkingTo: Rcpp
 RoxygenNote: 7.1.2
 Suggests: 
