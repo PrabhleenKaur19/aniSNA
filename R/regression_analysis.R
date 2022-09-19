@@ -5,7 +5,7 @@
 #' @param subsampling_proportion A vector depicting proportions of sub-sampled nodes
 #' @param network_metrics A vector depicting names of local global network metrics 
 #'
-#' @return A list of network metrics. Each element of list is a matrix whose columns 
+#' @return A list of network metrics of class list_regression_matrices. Each element of list is a matrix whose columns 
 #'         correspond to subsampling_proportion and rows correspond to n_simulations.
 #'         The entries of the matrix provide value of the slope of regression when the 
 #'         nodal values in sub-sampled network are regressed upon the values of the same 
@@ -50,6 +50,8 @@ regression_slope_analyze <- function(network,
     }
   }
   
+  class(regression_slope) <- "list_regression_matrices"
+  
   return(regression_slope)
 }
 
@@ -58,13 +60,22 @@ regression_slope_analyze <- function(network,
 
 #'  To plot regression analysis results
 #'
-#' @param regression_results A list of matrices obtained from regression_slope_analyze function
+#' @param x A list of matrices obtained from regression_slope_analyze function
+#' @param ... Further arguments are ignored
 #'
 #' @return NULL
 #' @export
+#' @method plot list_regression_matrices
 #'
 #' @examples
-plot_regression_results <- function(regression_results){
+plot.list_regression_matrices <- function(x,...){
+  
+  regression_results <- x
+  
+  if(!inherits(regression_results,"list_regression_matrices")){
+    stop("List passed is not of class 'list_regression_matrices'")
+  }
+  
   
   for(i in 1:length(regression_results)){
     mean_slope = apply(regression_results[[i]], 2, mean, na.rm = TRUE)

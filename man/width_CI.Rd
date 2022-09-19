@@ -26,7 +26,7 @@ width_CI(
 should be chosen from "mean_degree", "mean_strength", "density", "diameter", "transitivity". (default = c("mean_degree", "mean_strength", "density", "diameter", "transitivity")).}
 }
 \value{
-A matrix containing width of Confidence Intervals where each row corresponds to the sub-sample size and columns correspond to the chosen network metric.
+A matrix of class Width_CI_matrix containing width of Confidence Intervals where each row corresponds to the sub-sample size and columns correspond to the chosen network metric.
 }
 \description{
 To obtain width of confidence intervals using bootstrapped versions at each level of sub-sampling

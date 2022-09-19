@@ -1,3 +1,24 @@
+
+
+#' To obtain latitude and longitude values in radian
+#'
+#' @param species_raw A DataFrame consisting of GPS observations. The DataFrame must have a "latitude" column and a "longitude" column
+#'
+#' @return The same DataFrame that has been passed as the argument with two additional columns namely "latitude_rad" and "longitude_rad"
+#' @export
+#'
+#' @examples
+get_coordinates_in_radian <- function(species_raw) {
+  species_raw$latitude_rad <-  0.01745329251 * species_raw$latitude
+  species_raw$longitude_rad <-  0.01745329251 * species_raw$longitude
+  return(species_raw)
+}
+
+
+
+
+
+
 #' To obtain interactions from raw GPS observations
 #'
 #' @param species_raw A DataFrame consisting of GPS observations

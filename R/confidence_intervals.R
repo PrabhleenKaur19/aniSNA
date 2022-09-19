@@ -10,7 +10,7 @@
 #' should be chosen from "mean_degree", "mean_strength", "density", "diameter", "transitivity". (default = c("mean_degree", "mean_strength", "density", "diameter", "transitivity")).
 #'
 #'
-#' @return A matrix containing width of Confidence Intervals where each row corresponds to the sub-sample size and columns correspond to the chosen network metric.
+#' @return A matrix of class Width_CI_matrix containing width of Confidence Intervals where each row corresponds to the sub-sample size and columns correspond to the chosen network metric.
 #' @export
 #'
 #' @examples
@@ -36,19 +36,30 @@ width_CI <- function(network,
     j <- j+1
   }
   rownames(mean_value_CI_len) <- as.character(seq(10, igraph::gorder(network), 10))
+  
+  class(mean_value_CI_len) = "Width_CI_matrix"
+  
   return(mean_value_CI_len)
 }
 
 
 #' Title To plot the results obtained from width_CI function
 #'
-#' @param width_CI_results A matrix of width of Confidence Intervals obtained from width_CI function
+#' @param x A matrix of width of Confidence Intervals obtained from width_CI function
+#' @param ... Further arguments are ignored.
 #'
 #' @return NULL
+#' @method plot Width_CI_matrix
 #' @export
 #'
 #' @examples
-plot_width_CI <- function(width_CI_results){
+plot.Width_CI_matrix <- function(x,...){
+  
+  width_CI_results <- x
+  
+  if(!inherits(width_CI_results,"Width_CI_matrix")){
+    stop("Matrix passed is not of class 'Width_CI_matrix'")
+  }
   
   subsample_size <- seq(10,10*nrow(width_CI_results), 10)
   col_vec <- c("red", "blue", "green", "yellow", "black")

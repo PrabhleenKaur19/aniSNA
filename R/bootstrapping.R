@@ -6,7 +6,7 @@
 #' @param n_versions Number of bootstrapped versions required
 #' @param seed seed number
 #'
-#' @return A list of two elements. The first element contains the original network 
+#' @return A list of class bootstrapped_pvalue_matrix consisting of two elements. The first element contains the original network 
 #'         and the second element contains bootstrapped versions
 #' @export
 #'
@@ -57,18 +57,29 @@ obtain_two_bs_versions <- function(network,
   }
   colnames(mean_metrics_pvalue) <- network_metrics
   rownames(mean_metrics_pvalue) <- as.character(5*(1:floor(floor(igraph::gorder(network)/2)/5)))
+  
+  class(mean_metrics_pvalue) = "bootstrapped_pvalue_matrix"
+  
   return(mean_metrics_pvalue)
 }
 
 #' To plot the results obtained from obtain_two_bs_versions function
 #'
-#' @param bootstrapped_results A matrix of p-values obtained from obtain_two_bs_versions function
+#' @param x A matrix of p-values obtained from obtain_two_bs_versions function
+#' @param ... Further arguments are ignored.
 #'
 #' @return NULL
+#' @method plot bootstrapped_pvalue_matrix
 #' @export
 #'
 #' @examples
-plot_p_values_bootstrapped_versions <- function(bootstrapped_results){
+plot.bootstrapped_pvalue_matrix <- function(x,...){
+  
+  bootstrapped_results <- x
+  
+  if(!inherits(bootstrapped_results,"bootstrapped_pvalue_matrix")){
+    stop("Matrix passed is not of class 'bootstrapped_pvalue_matrix'")
+  }
   
   subsample_size <- seq(5,5*nrow(bootstrapped_results), 5)
   col_vec <- c("red", "blue", "green", "yellow", "black")

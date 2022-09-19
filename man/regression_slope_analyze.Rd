@@ -22,7 +22,7 @@ regression_slope_analyze(
 \item{network_metrics}{A vector depicting names of local global network metrics}
 }
 \value{
-A list of network metrics. Each element of list is a matrix whose columns 
+A list of network metrics of class list_regression_matrices. Each element of list is a matrix whose columns 
         correspond to subsampling_proportion and rows correspond to n_simulations.
         The entries of the matrix provide value of the slope of regression when the 
         nodal values in sub-sampled network are regressed upon the values of the same 

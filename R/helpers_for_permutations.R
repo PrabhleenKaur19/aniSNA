@@ -1,5 +1,5 @@
 #The following function permutes the order of dates
-obtain_permutation_dates=function(species_raw, n_perm = 100, n_cores = 1) {
+obtain_permutation_dates=function(species_raw, n_permutations = 100, n_cores = 1) {
   
   #order the species by animal ID
   species_raw <- species_raw[order(species_raw$animal_id),]
@@ -9,7 +9,7 @@ obtain_permutation_dates=function(species_raw, n_perm = 100, n_cores = 1) {
   species_raw$hour = lubridate::hour(species_raw$datetime)
   species_raw$minute = lubridate::minute(species_raw$datetime)
   
-  permuted_dates_list <- vector(mode = "list", length = n_perm)
+  permuted_dates_list <- vector(mode = "list", length = n_permutations)
   
   # first create a subset data frame containing only the unique pairs of ids and dates
   u=unique(subset(species_raw, select=c("animal_id", "date")))

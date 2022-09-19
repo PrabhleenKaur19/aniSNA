@@ -22,7 +22,7 @@ correlation_analyze(
 \item{network_metrics}{A vector depicting names of local global network metrics}
 }
 \value{
-A list of network metrics. Each element of list is a matrix whose columns 
+A list of network metrics of class list_correlation_matrices. Each element of list is a matrix whose columns 
         correspond to subsampling_proportion and rows correspond to n_simulations.
         The entries of the matrix provide value of correlation between the nodes in 
         full network and the sub-sampled network for the corresponding metric.

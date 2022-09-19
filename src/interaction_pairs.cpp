@@ -2,6 +2,14 @@
 #include <math.h>
 using namespace Rcpp;
 
+
+//' Calculate diatnce between two pairs of radian coordinates
+//' @param latf latitude from
+//' @param lonf longitude from
+//' @param latt latitude to
+//' @param lont longitude to
+//' 
+//' @export
 // [[Rcpp::export]]
 double distance_radian_coordinates(double latf, double lonf, 
                                double latt, double lont) {
@@ -16,6 +24,15 @@ double distance_radian_coordinates(double latf, double lonf,
   return distance;
 }
 
+//' Function to obtain pairs of interacting animals
+//' @param i Index of the animal 
+//' @param datetime DateTime vector
+//' @param latitude latitude vector
+//' @param longitude longitude vector
+//' @param temporal_thresh time threshold in minutes
+//' @param spatial_thresh spatial threshold in meters
+//' 
+//' @export
 // [[Rcpp::export]]
 Rcpp::NumericMatrix interacting_pairs(int i, DatetimeVector datetime, 
                                       NumericVector latitude, NumericVector longitude, int temporal_thresh, int spatial_thresh) {

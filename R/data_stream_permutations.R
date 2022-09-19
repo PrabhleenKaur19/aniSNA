@@ -1,3 +1,15 @@
+#' Function to obtain permuted networks from raw datastream
+#'
+#' @param species_raw A dataframe consisting of raw GPS observations
+#' @param temporal_thresh Temporal threshold in minutes
+#' @param spatial_thresh Spatial threshold
+#' @param n_permutations Number of permuted versions to obtain
+#' @param n_cores Number of cores for parallel processing with default 1
+#'
+#' @return A list of size n_permutations where each element is a network of class igraph obtained by permuting raw datastream 
+#' @export
+#'
+#' @examples
 obtain_permuted_network_versions <- function(species_raw, temporal_thresh, spatial_thresh, n_permutations, n_cores = 1){
   
   #Obtain randomized order of dates of observation
@@ -20,5 +32,79 @@ obtain_permuted_network_versions <- function(species_raw, temporal_thresh, spati
   }
   close(pb)
   
+  class(permuted_networks_list) <- "list_permuted_networks"
+  
   return(permuted_networks_list)
+}
+
+#' Function to plot the network metrics distribution of permuted networks
+#'
+#' @param x A list of igraph objects obtained obtained using the function obtain_permuted_network_versions
+#' @param species_original_network An igraph object which is the original network
+#' @param network_metrics A vector depicting names of global network metrics. This should be supplied as a character vector and the values 
+#' should be chosen from "mean_strength", "density", "diameter", "transitivity". (default = c("mean_strength", "density", "diameter", "transitivity")).
+#'
+#' @param ... Further arguments are ignored.
+#'
+#' @return
+#' 
+#'  @method plot list_permuted_networks
+#' 
+#' @export
+#'
+#' @examples
+plot.list_permuted_networks <- function(x, 
+                                     species_original_network,
+                                     network_metrics = c("density", "mean_strength", "diameter", "transitivity"),
+                                     ...){
+  networks_list <- x
+  
+  if(!inherits(networks_list, "list_permuted_networks")){
+    stop("List passed is not of class 'list_permuted_networks'")
+  }
+  
+  if("density" %in% network_metrics){
+
+    permutations_density <- unlist(lapply(networks_list, function(i) igraph::edge_density(i)))
+    den_den <- stats::density(permutations_density)
+    plot(den_den, 
+         main = paste("Density Distribution of permuted versions", sep = ""))
+    graphics::mtext(paste("Observed Value - ", 
+                round(igraph::edge_density(species_original_network),5), sep = ""), 
+          side = 3 , col = "red", cex = 0.8)
+  }
+  
+  if("mean_strength" %in% network_metrics){
+    
+    permutations_mean_strength <- unlist(lapply(networks_list, function(i) mean(igraph::strength(i))))
+    den_ms <- stats::density(permutations_mean_strength)
+    plot(den_ms, 
+         main = paste("Mean Strength Distribution of permuted versions", sep = ""))
+    graphics::mtext(paste("Observed Value - ", 
+                round(mean(igraph::strength(species_original_network)),5), sep = ""), 
+          side = 3 , col = "red", cex = 0.8)
+  }
+  
+  if ("transitivity" %in% network_metrics) {
+    
+    permutations_transitivity <- unlist(lapply(networks_list, function(i) igraph::transitivity(i)))
+    den_tran <- stats::density(permutations_transitivity, na.rm = TRUE)
+    plot(den_tran, 
+         main = paste("Transitivity Distribution of permuted versions", sep = ""))
+    graphics::mtext(paste("Observed Value - ", 
+                round(igraph::transitivity(species_original_network),5), sep = ""), 
+          side = 3 , col = "red", cex = 0.8)
+  }
+  
+  if ("diameter" %in% network_metrics) {
+    
+    permutations_diameter <- unlist(lapply(networks_list, function(i) igraph::diameter(i)))
+    den_diam <- stats::density(permutations_diameter)
+    plot(den_diam, 
+         main = paste("Diameter Distribution of permuted versions", sep = ""))
+    graphics::mtext(paste("Observed Value - ", 
+                round(igraph::diameter(species_original_network),5), sep = ""), 
+          side = 3 , col = "red", cex = 0.8)
+  }
+  
 }

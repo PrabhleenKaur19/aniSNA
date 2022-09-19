@@ -21,7 +21,7 @@ obtain_bootstrapped_samples(
 \item{seed}{seed number}
 }
 \value{
-A list of two elements. The first element contains the original network 
+A list of class bootstrapped_pvalue_matrix consisting of two elements. The first element contains the original network 
         and the second element contains bootstrapped versions
 }
 \description{
