@@ -1,10 +1,10 @@
-## usethis namespace: start
-#' @useDynLib aniSNA, .registration = TRUE
-## usethis namespace: end
-NULL
-
-
-## usethis namespace: start
+#' aniSNA
+#' 
+#' Functions to obtain animal social networks from GPS telemetry data and analyse them statistically. 
+#' 
+#' @docType package
+#' @author Prabhleen Kaur
+#' @importFrom Rcpp evalCpp
 #' @importFrom Rcpp sourceCpp
-## usethis namespace: end
-NULL
+#' @useDynLib aniSNA, .registration = TRUE
+NULL  

@@ -26,6 +26,9 @@ interacting_pairs(
 
 \item{spatial_thresh}{spatial threshold in meters}
 }
+\value{
+A matrix consisting of two row. The first row corresponds to the interacting indices and the second row to the respective distances.
+}
 \description{
 Function to obtain pairs of interacting animals
 }

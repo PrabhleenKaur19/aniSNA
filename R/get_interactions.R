@@ -37,7 +37,7 @@ get_interactions <- function(species_raw, temporal_thresh = 7, spatial_thresh, n
 
   # For each row i in data, we get corresponding subsequent rows that are within the user provided temporal and spatial threshold
   list_ijs <- parallel::mclapply(1:(nrow(species_raw) - 1), function(i) {
-    interacting_pairs(
+    aniSNA:::interacting_pairs(
       i - 1, species_raw$datetime,
       species_raw$latitude_rad,
       species_raw$longitude_rad, temporal_thresh, spatial_thresh

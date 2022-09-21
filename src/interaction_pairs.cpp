@@ -3,12 +3,13 @@
 using namespace Rcpp;
 
 
-//' Calculate diatnce between two pairs of radian coordinates
+//' Calculate distance between two pairs of radian coordinates
 //' @param latf latitude from
 //' @param lonf longitude from
 //' @param latt latitude to
 //' @param lont longitude to
 //' 
+//' @return distance value in meters
 //' @export
 // [[Rcpp::export]]
 double distance_radian_coordinates(double latf, double lonf, 
@@ -32,6 +33,7 @@ double distance_radian_coordinates(double latf, double lonf,
 //' @param temporal_thresh time threshold in minutes
 //' @param spatial_thresh spatial threshold in meters
 //' 
+//' @return A matrix consisting of two row. The first row corresponds to the interacting indices and the second row to the respective distances. 
 //' @export
 // [[Rcpp::export]]
 Rcpp::NumericMatrix interacting_pairs(int i, DatetimeVector datetime, 

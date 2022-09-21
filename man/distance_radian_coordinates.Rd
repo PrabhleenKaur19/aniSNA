@@ -2,7 +2,7 @@
 % Please edit documentation in R/RcppExports.R
 \name{distance_radian_coordinates}
 \alias{distance_radian_coordinates}
-\title{Calculate diatnce between two pairs of radian coordinates}
+\title{Calculate distance between two pairs of radian coordinates}
 \usage{
 distance_radian_coordinates(latf, lonf, latt, lont)
 }
@@ -15,6 +15,9 @@ distance_radian_coordinates(latf, lonf, latt, lont)
 
 \item{lont}{longitude to}
 }
+\value{
+distance value in meters
+}
 \description{
-Calculate diatnce between two pairs of radian coordinates
+Calculate distance between two pairs of radian coordinates
 }
