@@ -4,7 +4,7 @@ Title: Statistical network analysis of animal social networks
 Version: 1.0
 Date: 2022-03-19
 Author: Prabhleen Kaur
-Maintainer: Prabhleen Kaur <prabhleen.kaur@ucdconnect.ie>
+Maintainer: Prabhleen Kaur <prabhleen.kaur.ucd@gmail.com>
 Description: Functions to obtain animal social networks from GPS telemetry data and 
     analyse them statistically. 
 License: MIT + file LICENSE
@@ -19,7 +19,6 @@ Imports:
     Rcpp,
     reshape,
     rlang,
-    segmented,
     stats,
     stringr,
     utils
