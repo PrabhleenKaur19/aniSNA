@@ -1,8 +1,8 @@
 Package: aniSNA
 Type: Package
-Title: Statistical network analysis of animal social networks
+Title: Statistical Network Analysis of Animal Social Networks
 Version: 1.0
-Date: 2022-03-19
+Date: 2023-02-01
 Author: Prabhleen Kaur
 Maintainer: Prabhleen Kaur <prabhleen.kaur.ucd@gmail.com>
 Description: Functions to obtain animal social networks from GPS telemetry data and 
