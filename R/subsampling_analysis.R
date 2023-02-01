@@ -73,7 +73,7 @@ plot.Subsampled_Network_Metrics <- function(x, network,...){
   metrics_list <- list("density" = function(network) return(igraph::edge_density(network)),
                        "mean_strength" = function(network) return(mean(igraph::strength(network))),
                        "transitivity" = function(network) return(igraph::transitivity(network)),
-                       "diameter" = function(network) return(igraph::diameter(network))
+                       "diameter" = function(network) return(igraph::diameter(network, weights = NA))
   )
   
   for(i in 1:length(subsampling_result)){
@@ -85,18 +85,8 @@ plot.Subsampled_Network_Metrics <- function(x, network,...){
     )
     graphics::axis(side = 1, at = c(1:ncol(subsampling_result[[i]])), labels = colnames(subsampling_result[[i]]))
     graphics::title(names(subsampling_result)[i], adj = 0.5, line = 1)
-    graphics::legend("bottomright", legend = "Value of \nobserved network metric",col = "red", lty = 1)
+    graphics::legend("bottomright", legend = "Observed Value",col = "red", lty = 1)
     graphics::abline(h = metrics_list[[names(subsampling_result)[i]]](network), col = "red")
-    
-    # if (names(subsampling_result)[i] == "density") {
-    #   graphics::abline(h = igraph::edge_density(network), col = "red")
-    # } else if (names(subsampling_result)[i] == "mean_strength") {
-    #   graphics::abline(h = mean(igraph::strength(network)), col = "red")
-    # } else if (names(subsampling_result)[i] == "transitivity") {
-    #   graphics::abline(h = igraph::transitivity(network), col = "red")
-    # } else {
-    #   graphics::abline(h = igraph::diameter(network), col = "red")
-    # }
   }
 }
 
