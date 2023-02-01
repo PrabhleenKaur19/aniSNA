@@ -2,8 +2,8 @@
 #'
 #' @param network An igraph graph object consisting of observed network
 #' @param n_simulations Number of sub-samples to be obtained at each level
-#' @param subsampling_proportion A vector depicting proportions of sub-sampled nodes
-#' @param network_metrics A vector depicting names of global network metrics 
+#' @param subsampling_proportion A vector depicting the levels (in proportion) at which subsamples to be taken
+#' @param network_metrics A vector depicting names of global network metrics. Default = network_metrics = c("density", "mean_strength", "diameter", "transitivity")
 #'
 #' @return A list of network metrics of class "Subsampled_Network_Metrics". Each element of list is a matrix whose columns 
 #'         correspond to subsampling_proportion and rows correspond to n_simulations. 
@@ -11,6 +11,8 @@
 #' @export
 #'
 #' @examples
+#' data(elk_network_2010)
+#' network_subsamples(elk_network_2010)
 network_subsamples <- function(network, 
                               n_simulations = 100, 
                               subsampling_proportion = c(0.1, 0.30, 0.50, 0.70, 0.90),
@@ -32,7 +34,7 @@ network_subsamples <- function(network,
       
       if("density" %in% network_metrics){subsampling_result$density[i, j] <- igraph::edge_density(sub_network)}
       if("mean_strength" %in% network_metrics){subsampling_result$mean_strength[i, j] <- mean(igraph::strength(sub_network))}
-      if("diameter" %in% network_metrics){subsampling_result$diameter[i, j] <- igraph::diameter(sub_network)}
+      if("diameter" %in% network_metrics){subsampling_result$diameter[i, j] <- igraph::diameter(sub_network, weights = NA)}
       if("transitivity" %in% network_metrics){subsampling_result$transitivity[i, j] <- igraph::transitivity(sub_network)}
       
     }
@@ -48,44 +50,53 @@ network_subsamples <- function(network,
 #'
 #' @param x A list of matrices obtained from network_subsamples function of class "Subsampled_Network_Metrics"
 #' @param network An igraph graph object consisting of observed network
-#' @param ... Further arguments are ignored.
+#' @param ... Further arguments are ignored
 #'
 #' @return NULL
-#' 
-#' @aliases plot
 #' 
 #' @method plot Subsampled_Network_Metrics
 #' 
 #' @export
 #'
 #' @examples
+#' data(elk_network_2010)
+#' elk_subsamples <- network_subsamples(elk_network_2010)
+#' plot(elk_subsamples, elk_network_2010)
 plot.Subsampled_Network_Metrics <- function(x, network,...){
   
   subsampling_result = x
   
   if(!inherits(subsampling_result, "Subsampled_Network_Metrics")){
-    stop("subsampling_result passed is not of class 'Subsampled_Network_Metrics'")
+    stop("x passed is not of class 'Subsampled_Network_Metrics'")
   }
+  
+  metrics_list <- list("density" = function(network) return(igraph::edge_density(network)),
+                       "mean_strength" = function(network) return(mean(igraph::strength(network))),
+                       "transitivity" = function(network) return(igraph::transitivity(network)),
+                       "diameter" = function(network) return(igraph::diameter(network))
+  )
   
   for(i in 1:length(subsampling_result)){
     graphics::boxplot(
       x = subsampling_result[[i]], xaxt = "n", xlab = "Sub Sample Size(in %)", ylab = "Value", outline = FALSE,
       border = "black",
-      col = "lightblue"
+      col = "lightblue",
+      ylim = c(0, max(subsampling_result[[i]], metrics_list[[names(subsampling_result)[i]]](network), na.rm = TRUE))
     )
     graphics::axis(side = 1, at = c(1:ncol(subsampling_result[[i]])), labels = colnames(subsampling_result[[i]]))
     graphics::title(names(subsampling_result)[i], adj = 0.5, line = 1)
-    graphics::legend("bottomright", legend = "Value of \nfull network",col = "red", lty = 1)
+    graphics::legend("bottomright", legend = "Value of \nobserved network metric",col = "red", lty = 1)
+    graphics::abline(h = metrics_list[[names(subsampling_result)[i]]](network), col = "red")
     
-    if (names(subsampling_result)[i] == "density") {
-      graphics::abline(h = igraph::edge_density(network), col = "red")
-    } else if (names(subsampling_result)[i] == "mean_strength") {
-      graphics::abline(h = mean(igraph::strength(network)), col = "red")
-    } else if (names(subsampling_result)[i] == "transitivity") {
-      graphics::abline(h = igraph::transitivity(network), col = "red")
-    } else {
-      graphics::abline(h = igraph::diameter(network), col = "red")
-    }
+    # if (names(subsampling_result)[i] == "density") {
+    #   graphics::abline(h = igraph::edge_density(network), col = "red")
+    # } else if (names(subsampling_result)[i] == "mean_strength") {
+    #   graphics::abline(h = mean(igraph::strength(network)), col = "red")
+    # } else if (names(subsampling_result)[i] == "transitivity") {
+    #   graphics::abline(h = igraph::transitivity(network), col = "red")
+    # } else {
+    #   graphics::abline(h = igraph::diameter(network), col = "red")
+    # }
   }
 }
 

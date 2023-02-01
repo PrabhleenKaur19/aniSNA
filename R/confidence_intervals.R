@@ -14,6 +14,8 @@
 #' @export
 #'
 #' @examples
+#' data(elk_network_2010)
+#' width_CI(elk_network_2010, n_versions = 100)
 width_CI <- function(network,
                      n_versions = 1000,
                      seed = 12345, 
@@ -37,7 +39,7 @@ width_CI <- function(network,
   }
   rownames(mean_value_CI_len) <- as.character(seq(10, igraph::gorder(network), 10))
   
-  class(mean_value_CI_len) = "Width_CI_matrix"
+  class(mean_value_CI_len) =  "Width_CI_matrix"
   
   return(mean_value_CI_len)
 }
@@ -53,6 +55,9 @@ width_CI <- function(network,
 #' @export
 #'
 #' @examples
+#' data(elk_network_2010)
+#' width_CI_elk <- width_CI(elk_network_2010, n_versions = 100)
+#' plot(width_CI_elk)
 plot.Width_CI_matrix <- function(x,...){
   
   width_CI_results <- x
@@ -61,6 +66,7 @@ plot.Width_CI_matrix <- function(x,...){
     stop("Matrix passed is not of class 'Width_CI_matrix'")
   }
   
+  width_CI_results <- as.data.frame(do.call(cbind, width_CI_results))
   subsample_size <- seq(10,10*nrow(width_CI_results), 10)
   col_vec <- c("red", "blue", "green", "yellow", "black")
   
@@ -71,7 +77,7 @@ plot.Width_CI_matrix <- function(x,...){
            #ylim = c(0, max(width_CI_results[,i])),
            #xlim = c(0, max(subsample_size)),
            type = "b",
-           col = col_vec[1],
+           col = col_vec[i],
            main = colnames(width_CI_results)[i],
            pch = 16,
            xlab = "Sample Size",

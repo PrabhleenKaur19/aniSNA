@@ -31,3 +31,7 @@ A matrix of p-values whose rows correspond to the sub-sample size and columns co
 \description{
 To obtain two non-overlapping bootstrapped versions and obtain p-values for the significance of difference between them
 }
+\examples{
+data(elk_network_2010)
+obtain_two_bs_versions(elk_network_2010, n_versions = 100)
+}

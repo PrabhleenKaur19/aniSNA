@@ -29,3 +29,10 @@ A list of size n_permutations where each element is a network of class igraph ob
 \description{
 Function to obtain permuted networks from raw datastream
 }
+\examples{
+\dontrun{
+data(elk_data_2010)
+permuted_versions <- obtain_permuted_network_versions(elk_data_2010, 
+temporal_thresh = 7, spatial_thresh = 15, n_permutations = 100, n_cores = 4)
+}
+}

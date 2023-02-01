@@ -14,3 +14,8 @@
 \description{
 To plot the results obtained from obtain_two_bs_versions function
 }
+\examples{
+data(elk_network_2010)
+mean_pvalue_matrix <- obtain_two_bs_versions(elk_network_2010, n_versions = 100)
+plot(mean_pvalue_matrix)
+}

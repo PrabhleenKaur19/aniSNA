@@ -14,3 +14,8 @@
 \description{
 To plot regression analysis results
 }
+\examples{
+data(elk_network_2010)
+elk_regression_analysis <- regression_slope_analyze(elk_network_2010)
+plot(elk_regression_analysis)
+}

@@ -16,9 +16,9 @@ network_subsamples(
 
 \item{n_simulations}{Number of sub-samples to be obtained at each level}
 
-\item{subsampling_proportion}{A vector depicting proportions of sub-sampled nodes}
+\item{subsampling_proportion}{A vector depicting the levels (in proportion) at which subsamples to be taken}
 
-\item{network_metrics}{A vector depicting names of global network metrics}
+\item{network_metrics}{A vector depicting names of global network metrics. Default = network_metrics = c("density", "mean_strength", "diameter", "transitivity")}
 }
 \value{
 A list of network metrics of class "Subsampled_Network_Metrics". Each element of list is a matrix whose columns 
@@ -27,4 +27,8 @@ A list of network metrics of class "Subsampled_Network_Metrics". Each element of
 }
 \description{
 To generate subsamples and obtain network metrics of the subsamples
+}
+\examples{
+data(elk_network_2010)
+network_subsamples(elk_network_2010)
 }

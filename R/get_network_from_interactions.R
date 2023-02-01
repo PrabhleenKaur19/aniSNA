@@ -9,6 +9,8 @@
 #' @export
 #'
 #' @examples
+#' data(elk_data_2010, elk_interactions_2010)
+#' network_from_interactions(elk_data_2010, elk_interactions_2010)
 #' @importFrom rlang .data
 network_from_interactions <- function(species_raw, interactions, n_cores = 1) {
   for (i in which(interactions$Animal_A > interactions$Animal_B)) {
@@ -30,6 +32,7 @@ network_from_interactions <- function(species_raw, interactions, n_cores = 1) {
     mc.cores = n_cores
   ))
   species_network <- network_obtain(species_raw, number_interactions)
+  
   return(species_network)
 }
 

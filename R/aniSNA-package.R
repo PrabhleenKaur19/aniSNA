@@ -4,6 +4,7 @@
 #' 
 #' @docType package
 #' @author Prabhleen Kaur
+#' @name aniSNA
 #' @importFrom Rcpp evalCpp
 #' @importFrom Rcpp sourceCpp
 #' @useDynLib aniSNA, .registration = TRUE

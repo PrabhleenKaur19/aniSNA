@@ -2,7 +2,6 @@
 % Please edit documentation in R/subsampling_analysis.R
 \name{plot.Subsampled_Network_Metrics}
 \alias{plot.Subsampled_Network_Metrics}
-\alias{plot}
 \title{To plot sub-sampling results}
 \usage{
 \method{plot}{Subsampled_Network_Metrics}(x, network, ...)
@@ -12,8 +11,13 @@
 
 \item{network}{An igraph graph object consisting of observed network}
 
-\item{...}{Further arguments are ignored.}
+\item{...}{Further arguments are ignored}
 }
 \description{
 To plot sub-sampling results
+}
+\examples{
+data(elk_network_2010)
+elk_subsamples <- network_subsamples(elk_network_2010)
+plot(elk_subsamples, elk_network_2010)
 }

@@ -7,16 +7,11 @@
 #' @return The same DataFrame that has been passed as the argument with two additional columns namely "latitude_rad" and "longitude_rad"
 #' @export
 #'
-#' @examples
 get_coordinates_in_radian <- function(species_raw) {
   species_raw$latitude_rad <-  0.01745329251 * species_raw$latitude
   species_raw$longitude_rad <-  0.01745329251 * species_raw$longitude
   return(species_raw)
 }
-
-
-
-
 
 
 #' To obtain interactions from raw GPS observations
@@ -30,6 +25,8 @@ get_coordinates_in_radian <- function(species_raw) {
 #' @export
 #'
 #' @examples
+#' data(elk_data_2010)
+#' get_interactions(elk_data_2010, temporal_thresh = 7, spatial_thresh = 15)
 get_interactions <- function(species_raw, temporal_thresh = 7, spatial_thresh, n_cores = 1) {
 
   # Sorting the observations by datetime values
@@ -37,7 +34,7 @@ get_interactions <- function(species_raw, temporal_thresh = 7, spatial_thresh, n
 
   # For each row i in data, we get corresponding subsequent rows that are within the user provided temporal and spatial threshold
   list_ijs <- parallel::mclapply(1:(nrow(species_raw) - 1), function(i) {
-    aniSNA:::interacting_pairs(
+      interacting_pairs(
       i - 1, species_raw$datetime,
       species_raw$latitude_rad,
       species_raw$longitude_rad, temporal_thresh, spatial_thresh

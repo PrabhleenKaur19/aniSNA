@@ -31,3 +31,7 @@ A matrix of class Width_CI_matrix containing width of Confidence Intervals where
 \description{
 To obtain width of confidence intervals using bootstrapped versions at each level of sub-sampling
 }
+\examples{
+data(elk_network_2010)
+width_CI(elk_network_2010, n_versions = 100)
+}

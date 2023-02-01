@@ -10,12 +10,14 @@ Description: Functions to obtain animal social networks from GPS telemetry data 
 License: MIT + file LICENSE
 Imports: 
     dplyr,
+    ggplot2,
     graphics,
     igraph,
     lubridate,
     magrittr,
     parallel,
     Rcpp,
+    reshape,
     rlang,
     segmented,
     stats,
@@ -27,3 +29,7 @@ Encoding: UTF-8
 Suggests: 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
+Depends: 
+    R (>= 2.10)
+LazyData: true
+LazyDataCompression:xz

@@ -27,3 +27,7 @@ A list of class bootstrapped_pvalue_matrix consisting of two elements. The first
 \description{
 To obtain bootstrapped versions of a network
 }
+\examples{
+data(elk_network_2010)
+obtain_bootstrapped_samples(elk_network_2010, n_versions = 100)
+}

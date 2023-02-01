@@ -1,14 +1,18 @@
-#' To obtain optimized spatial threshold for calculating interactions from raw GPS observations
+#' To obtain spatial threshold for calculating interactions from raw GPS observations. The threshold is obtained as the 
+#' distance interval that captures maximum number of inter-individual interactions. 
 #'
-#' @param species_interactions A dataframe consisting of individual interactions within maximum possible distance 
+#' @param species_interactions A dataframe consisting of individual interactions within maximum possible distance
+#' @param interval_size Minimum interval size within which the number of interactions should be calculated 
 #'
-#' @return Spatial threshold in metres
+#' @return Spatial threshold in meters
 #' @export
 #'
 #' @examples
-get_spatial_threshold <- function(species_interactions) {
+#' data(elk_all_interactions_2010)
+#' get_spatial_threshold(elk_all_interactions_2010, interval_size = 2)
+get_spatial_threshold <- function(species_interactions, interval_size) {
   max_distance <- max(species_interactions$distance)
-  breaks <- seq(0, max_distance, by = 5)
+  breaks <- seq(0, max_distance, by = interval_size)
   distance.cut <- cut(species_interactions$distance, breaks, right = FALSE)
   distance.freq <- table(distance.cut)
 
@@ -17,13 +21,12 @@ get_spatial_threshold <- function(species_interactions) {
     col = "blue",
     main = paste("Number observations in each interval", sep = ""),
     ylab = "Number of observations",
-    xlab = "Distance Values (interval size = 5)"
+    xlab = "Distance Values"
   )
 
   nobs_wrt_distance <- as.data.frame(cbind(breaks[-1], as.numeric(distance.freq)))
   colnames(nobs_wrt_distance) <- c("distance", "interactions_count")
-
-  lin.mod <- stats::lm(interactions_count ~ distance, data = nobs_wrt_distance)
-  segmented.mod <- segmented::segmented(lin.mod, seg.Z = ~distance, psi = 30)
-  return(segmented.mod$psi[2])
+  
+  first_mode <- nobs_wrt_distance$distance[which.max(nobs_wrt_distance$interactions_count)]
+  return(first_mode)
 }

@@ -11,6 +11,8 @@
 #' @export
 #'
 #' @examples
+#' data(elk_network_2010)
+#' obtain_bootstrapped_samples(elk_network_2010, n_versions = 100)
 obtain_bootstrapped_samples <- function(network, n_nodes = igraph::gorder(network), n_versions = 1000, seed = 12345){
   
   #Obtain a sub-network of order "size"
@@ -20,7 +22,7 @@ obtain_bootstrapped_samples <- function(network, n_nodes = igraph::gorder(networ
   }
   
   # Obtain adjacency matrix from the network
-  network_matrix <- igraph::as_adjacency_matrix(network, type = "both", edges = FALSE, sparse = FALSE, attr = "weight")
+  network_matrix <- igraph::as_adjacency_matrix(network, type = "both", sparse = FALSE, attr = "weight")
   bootstrapped_versions <- net_bootstrap(network_matrix, n_versions = n_versions) 
   
   return(bootstrapped_versions)
@@ -40,6 +42,8 @@ obtain_bootstrapped_samples <- function(network, n_nodes = igraph::gorder(networ
 #' @export
 #'
 #' @examples
+#' data(elk_network_2010)
+#' obtain_two_bs_versions(elk_network_2010, n_versions = 100)
 obtain_two_bs_versions <- function(network, 
                                    n_versions = 1000, 
                                    seed = 12345, 
@@ -73,6 +77,9 @@ obtain_two_bs_versions <- function(network,
 #' @export
 #'
 #' @examples
+#' data(elk_network_2010)
+#' mean_pvalue_matrix <- obtain_two_bs_versions(elk_network_2010, n_versions = 100)
+#' plot(mean_pvalue_matrix)
 plot.bootstrapped_pvalue_matrix <- function(x,...){
   
   bootstrapped_results <- x
@@ -86,7 +93,7 @@ plot.bootstrapped_pvalue_matrix <- function(x,...){
   
   plot(subsample_size, 
          bootstrapped_results[,1], 
-         ylim = c(0, 0.6),
+         ylim = c(0, 1),
          xlim = c(0, max(subsample_size)),
          type = "b",
          col = col_vec[1],
@@ -106,7 +113,7 @@ plot.bootstrapped_pvalue_matrix <- function(x,...){
     }
   }
   
-  graphics::abline(h = c(0.05,0.1), col = c("pink","brown"))
+  graphics::abline(h = 0.1, col = "brown")
   graphics::legend("topleft", 
                    legend = colnames(bootstrapped_results), 
                    col = col_vec[1:ncol(bootstrapped_results)],

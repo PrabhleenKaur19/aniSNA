@@ -21,3 +21,7 @@ A dataframe consisting of five columns. The first two columns contain animal ids
 \description{
 To obtain interactions from raw GPS observations
 }
+\examples{
+data(elk_data_2010)
+get_interactions(elk_data_2010, temporal_thresh = 7, spatial_thresh = 15)
+}

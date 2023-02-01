@@ -12,3 +12,7 @@ get_network_summary(network)
 \description{
 Calculates and prints network summary statistics
 }
+\examples{
+data(elk_network_2010)
+get_network_summary(elk_network_2010)
+}
