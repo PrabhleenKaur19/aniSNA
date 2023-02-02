@@ -101,7 +101,7 @@ plot.Subsampled_Permuted_Network_Metrics <- function(x, network,...){
                        
   for(i in 1:length(species_permuted_results)){
     
-     ggplot2::ggplot(species_long[[names(species_permuted_results)[i]]], ggplot2::aes(x=variable, y=value, fill=category)) +
+      plot_metrics <- ggplot2::ggplot(species_long[[names(species_permuted_results)[i]]], ggplot2::aes(x=variable, y=value, fill=category)) +
       ggplot2::geom_boxplot()+ 
       ggplot2::geom_hline(yintercept =  metrics_list[[names(species_permuted_results)[i]]](network), color = "red", linetype = "dashed") +
       ggplot2::theme(legend.position=c(0.8, 0.9), legend.title = ggplot2::element_blank(),
@@ -109,7 +109,9 @@ plot.Subsampled_Permuted_Network_Metrics <- function(x, network,...){
             axis.title=ggplot2::element_text(size=9)) +
       ggplot2::ggtitle(names(species_permuted_results)[i])+
       ggplot2::ylab("Value") + ggplot2::xlab("Sub-sample size (in %)")+
-      ggplot2::scale_fill_manual(values=c("orange", "blue"))
+      ggplot2::scale_fill_manual(values=c("orange", "skyblue"))
+      
+      print(plot_metrics)
 
   }              
 }

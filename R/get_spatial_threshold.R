@@ -21,7 +21,7 @@ get_spatial_threshold <- function(species_interactions, interval_size) {
     col = "blue",
     main = paste("Number observations in each interval", sep = ""),
     ylab = "Number of observations",
-    xlab = "Distance Values"
+    xlab = "Distance"
   )
 
   nobs_wrt_distance <- as.data.frame(cbind(breaks[-1], as.numeric(distance.freq)))
