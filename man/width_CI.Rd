@@ -6,24 +6,28 @@
 \usage{
 width_CI(
   network,
-  n_versions = 1000,
+  n_versions = 100,
   seed = 12345,
   n.iter = 10,
   network_metrics = c("mean_degree", "mean_strength", "density", "diameter",
-    "transitivity")
+    "transitivity"),
+  scaled_metrics = NULL
 )
 }
 \arguments{
 \item{network}{An igraph object}
 
-\item{n_versions}{Number of bootstrapped versions to be used}
+\item{n_versions}{Number of bootstrapped versions to be used. (default = 100)}
 
 \item{seed}{seed number}
 
-\item{n.iter}{Number of iterations at each level}
+\item{n.iter}{Number of iterations at each level. (default = 10)}
 
 \item{network_metrics}{Network metrics to be evaluated. This should be supplied as a character vector and the values 
-should be chosen from "mean_degree", "mean_strength", "density", "diameter", "transitivity". (default = c("mean_degree", "mean_strength", "density", "diameter", "transitivity")).}
+should be chosen from "mean_degree", "mean_strength", "density", "diameter", "transitivity". (default = c("mean_degree", "mean_strength", "density", "diameter", "transitivity"))}
+
+\item{scaled_metrics}{Optional. A vector subset of network_metrics with the names of metrics that should be scaled. 
+Values can be chosen from c("mean_degree", "mean_strength", "diameter").}
 }
 \value{
 A matrix of class Width_CI_matrix containing width of Confidence Intervals where each row corresponds to the sub-sample size and columns correspond to the chosen network metric.
