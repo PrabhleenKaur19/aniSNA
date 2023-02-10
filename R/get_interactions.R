@@ -16,9 +16,12 @@ get_coordinates_in_radian <- function(species_raw) {
 
 #' To obtain interactions from raw GPS observations
 #'
-#' @param species_raw A DataFrame consisting of GPS observations
+#' @param species_raw A DataFrame consisting of GPS observations. 
+#' It should have at least four columns namely "animal_id", "datetime", "latitude|_rad", and "longitude_rad". 
+#' "latitude|_rad", and "longitude_rad" are latitude and longitude values in radians respectively. See function "get_coordinates_in_radian"
+#' to get these values.
 #' @param temporal_thresh Temporal threshold in minutes with default 7 minutes
-#' @param spatial_thresh Spatial threshold
+#' @param spatial_thresh The maximum distance in meters within which two animals are considered interacting
 #' @param n_cores Number of cores for parallel processing with default 1
 #'
 #' @return A dataframe consisting of five columns. The first two columns contain animal ids, third and fourth column contain timestamp of their observations and the final column contains the distance between the two individuals
