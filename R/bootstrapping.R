@@ -43,8 +43,8 @@ obtain_bootstrapped_samples <- function(network, n_nodes = igraph::gorder(networ
 #'
 #' @examples
 #' data(elk_network_2010)
-#' obtain_two_bs_versions(elk_network_2010, n_versions = 100)
-obtain_two_bs_versions <- function(network, 
+#' bootstrapped_difference_pvalues(elk_network_2010, n_versions = 100)
+bootstrapped_difference_pvalues <- function(network, 
                                    n_versions = 1000, 
                                    seed = 12345, 
                                    n.iter = 10, 
@@ -67,9 +67,9 @@ obtain_two_bs_versions <- function(network,
   return(mean_metrics_pvalue)
 }
 
-#' To plot the results obtained from obtain_two_bs_versions function
+#' To plot the results obtained from bootstrapped_difference_pvalues function
 #'
-#' @param x A matrix of p-values obtained from obtain_two_bs_versions function
+#' @param x A matrix of p-values obtained from bootstrapped_difference_pvalues function
 #' @param ... Further arguments are ignored.
 #'
 #' @return NULL
@@ -78,7 +78,7 @@ obtain_two_bs_versions <- function(network,
 #'
 #' @examples
 #' data(elk_network_2010)
-#' mean_pvalue_matrix <- obtain_two_bs_versions(elk_network_2010, n_versions = 100)
+#' mean_pvalue_matrix <- bootstrapped_difference_pvalues(elk_network_2010, n_versions = 100)
 #' plot(mean_pvalue_matrix)
 plot.bootstrapped_pvalue_matrix <- function(x,...){
   
@@ -97,7 +97,6 @@ plot.bootstrapped_pvalue_matrix <- function(x,...){
          xlim = c(0, max(subsample_size)),
          type = "b",
          col = col_vec[1],
-         #main = colnames(bootstrapped_results)[1],
          pch = 16,
          xlab = "Sample Size",
          ylab = "p - value")
