@@ -7,11 +7,14 @@
 get_interactions(species_raw, temporal_thresh = 7, spatial_thresh, n_cores = 1)
 }
 \arguments{
-\item{species_raw}{A DataFrame consisting of GPS observations}
+\item{species_raw}{A DataFrame consisting of GPS observations. 
+It should have at least four columns namely "animal_id", "datetime", "latitude|_rad", and "longitude_rad". 
+"latitude|_rad", and "longitude_rad" are latitude and longitude values in radians respectively. See function "get_coordinates_in_radian"
+to get these values.}
 
 \item{temporal_thresh}{Temporal threshold in minutes with default 7 minutes}
 
-\item{spatial_thresh}{Spatial threshold}
+\item{spatial_thresh}{The maximum distance in meters within which two animals are considered interacting}
 
 \item{n_cores}{Number of cores for parallel processing with default 1}
 }

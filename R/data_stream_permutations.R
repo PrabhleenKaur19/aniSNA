@@ -77,7 +77,7 @@ plot.list_permuted_networks <- function(x,
   if("density" %in% network_metrics){
 
     permutations_density <- unlist(lapply(networks_list, function(i) igraph::edge_density(i)))
-    den_den <- stats::density(permutations_density)
+    den_den <- stats::density(permutations_density, na.rm = TRUE)
     plot(den_den, 
          main = paste("Density Distribution of permuted versions", sep = ""))
     graphics::mtext(paste("Observed Value - ", 
@@ -88,7 +88,7 @@ plot.list_permuted_networks <- function(x,
   if("mean_strength" %in% network_metrics){
     
     permutations_mean_strength <- unlist(lapply(networks_list, function(i) mean(igraph::strength(i))))
-    den_ms <- stats::density(permutations_mean_strength)
+    den_ms <- stats::density(permutations_mean_strength, na.rm = TRUE)
     plot(den_ms, 
          main = paste("Mean Strength Distribution of permuted versions", sep = ""))
     graphics::mtext(paste("Observed Value - ", 
@@ -110,7 +110,7 @@ plot.list_permuted_networks <- function(x,
   if ("diameter" %in% network_metrics) {
     
     permutations_diameter <- unlist(lapply(networks_list, function(i) igraph::diameter(i)))
-    den_diam <- stats::density(permutations_diameter)
+    den_diam <- stats::density(permutations_diameter, na.rm = TRUE)
     plot(den_diam, 
          main = paste("Diameter Distribution of permuted versions", sep = ""))
     graphics::mtext(paste("Observed Value - ", 

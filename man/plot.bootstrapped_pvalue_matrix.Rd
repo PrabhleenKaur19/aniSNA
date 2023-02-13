@@ -2,20 +2,20 @@
 % Please edit documentation in R/bootstrapping.R
 \name{plot.bootstrapped_pvalue_matrix}
 \alias{plot.bootstrapped_pvalue_matrix}
-\title{To plot the results obtained from obtain_two_bs_versions function}
+\title{To plot the results obtained from bootstrapped_difference_pvalues function}
 \usage{
 \method{plot}{bootstrapped_pvalue_matrix}(x, ...)
 }
 \arguments{
-\item{x}{A matrix of p-values obtained from obtain_two_bs_versions function}
+\item{x}{A matrix of p-values obtained from bootstrapped_difference_pvalues function}
 
 \item{...}{Further arguments are ignored.}
 }
 \description{
-To plot the results obtained from obtain_two_bs_versions function
+To plot the results obtained from bootstrapped_difference_pvalues function
 }
 \examples{
 data(elk_network_2010)
-mean_pvalue_matrix <- obtain_two_bs_versions(elk_network_2010, n_versions = 100)
+mean_pvalue_matrix <- bootstrapped_difference_pvalues(elk_network_2010, n_versions = 100)
 plot(mean_pvalue_matrix)
 }

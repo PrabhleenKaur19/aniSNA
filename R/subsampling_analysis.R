@@ -81,7 +81,7 @@ plot.Subsampled_Network_Metrics <- function(x, network,...){
       x = subsampling_result[[i]], xaxt = "n", xlab = "Sub Sample Size(in %)", ylab = "Value", outline = FALSE,
       border = "black",
       col = "lightblue",
-      ylim = c(0, max(subsampling_result[[i]], metrics_list[[names(subsampling_result)[i]]](network), na.rm = TRUE))
+      ylim = c(min(subsampling_result[[i]], metrics_list[[names(subsampling_result)[i]]](network), na.rm = TRUE), max(subsampling_result[[i]], metrics_list[[names(subsampling_result)[i]]](network), na.rm = TRUE))
     )
     graphics::axis(side = 1, at = c(1:ncol(subsampling_result[[i]])), labels = colnames(subsampling_result[[i]]))
     graphics::title(names(subsampling_result)[i], adj = 0.5, line = 1)

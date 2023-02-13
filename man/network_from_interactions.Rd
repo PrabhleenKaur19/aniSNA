@@ -7,9 +7,12 @@
 network_from_interactions(species_raw, interactions, n_cores = 1)
 }
 \arguments{
-\item{species_raw}{A dataframe consisting of raw GPS observations}
+\item{species_raw}{A dataframe consisting of raw GPS observations.
+It should have at least four columns namely "animal_id", "datetime", "latitude|_rad", and "longitude_rad". 
+"latitude|_rad", and "longitude_rad" are latitude and longitude values in radians respectively. See function "get_coordinates_in_radian"
+to get these values.}
 
-\item{interactions}{A dataframe of interactions captured through raw GPS observations}
+\item{interactions}{A dataframe of interactions obtained from raw GPS observations using the function "get_interactions"}
 
 \item{n_cores}{Number of cores for parallel processing, default is 1}
 }
