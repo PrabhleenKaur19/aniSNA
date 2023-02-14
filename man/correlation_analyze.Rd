@@ -31,6 +31,8 @@ A list of network metrics of class list_correlation_matrices. Each element of li
 To perform correlation analysis for local network metrics
 }
 \examples{
+\dontrun{
 data(elk_network_2010)
 correlation_analyze(elk_network_2010)
+}
 }

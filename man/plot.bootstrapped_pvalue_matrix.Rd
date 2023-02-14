@@ -15,7 +15,9 @@
 To plot the results obtained from bootstrapped_difference_pvalues function
 }
 \examples{
+\dontrun{
 data(elk_network_2010)
 mean_pvalue_matrix <- bootstrapped_difference_pvalues(elk_network_2010, n_versions = 100)
 plot(mean_pvalue_matrix)
+}
 }

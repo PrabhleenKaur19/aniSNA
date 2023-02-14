@@ -17,7 +17,9 @@
 To plot sub-sampling results
 }
 \examples{
+\dontrun{
 data(elk_network_2010)
 elk_subsamples <- network_subsamples(elk_network_2010)
 plot(elk_subsamples, elk_network_2010)
+}
 }

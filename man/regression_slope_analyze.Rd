@@ -32,6 +32,8 @@ A list of network metrics of class list_regression_matrices. Each element of lis
 To perform regression analysis for local network metrics
 }
 \examples{
+\dontrun{
 data(elk_network_2010)
 regression_slope_analyze(elk_network_2010)
+}
 }

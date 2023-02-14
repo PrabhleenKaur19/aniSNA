@@ -10,8 +10,10 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' data(elk_2010_permutations)
 #' subsamples_permuted_networks(elk_2010_permutations)
+#' }
 subsamples_permuted_networks <- function(networks_list,
                                            subsampling_proportion = c(0.1, 0.30, 0.50, 0.70, 0.90),
                                            network_metrics = c("density", "mean_strength", "diameter", "transitivity")){
@@ -59,9 +61,11 @@ subsamples_permuted_networks <- function(networks_list,
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' data(elk_2010_permutations, elk_network_2010)
 #' elk_subsamples_permuted_networks <- subsamples_permuted_networks(elk_2010_permutations)
 #' plot(elk_subsamples_permuted_networks, elk_network_2010)
+#' }
 plot.Subsampled_Permuted_Network_Metrics <- function(x, network,...){
   
   

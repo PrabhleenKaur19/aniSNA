@@ -28,8 +28,10 @@ get_coordinates_in_radian <- function(species_raw) {
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' data(elk_data_2010)
 #' get_interactions(elk_data_2010, temporal_thresh = 7, spatial_thresh = 15)
+#' }
 get_interactions <- function(species_raw, temporal_thresh = 7, spatial_thresh, n_cores = 1) {
 
   # Sorting the observations by datetime values

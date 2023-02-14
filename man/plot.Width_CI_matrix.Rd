@@ -15,7 +15,9 @@
 Title To plot the results obtained from width_CI function
 }
 \examples{
+\dontrun{
 data(elk_network_2010)
 width_CI_elk <- width_CI(elk_network_2010, n_versions = 100)
 plot(width_CI_elk)
+}
 }

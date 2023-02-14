@@ -13,8 +13,10 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' data(elk_network_2010)
 #' regression_slope_analyze(elk_network_2010)
+#' }
 regression_slope_analyze <- function(network, 
                                 n_simulations = 10,
                                 subsampling_proportion = c(0.1, 0.30, 0.50, 0.70, 0.90),
@@ -70,9 +72,11 @@ regression_slope_analyze <- function(network,
 #' @method plot list_regression_matrices
 #'
 #' @examples
+#' \dontrun{
 #' data(elk_network_2010)
 #' elk_regression_analysis <- regression_slope_analyze(elk_network_2010)
 #' plot(elk_regression_analysis)
+#' }
 plot.list_regression_matrices <- function(x,...){
   
   regression_results <- x

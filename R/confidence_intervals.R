@@ -16,8 +16,10 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' data(elk_network_2010)
 #' width_CI(elk_network_2010, n_versions = 100)
+#' }
 width_CI <- function(network,
                      n_versions = 100,
                      seed = 12345, 
@@ -67,9 +69,11 @@ width_CI <- function(network,
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' data(elk_network_2010)
 #' width_CI_elk <- width_CI(elk_network_2010, n_versions = 100)
 #' plot(width_CI_elk)
+#' }
 plot.Width_CI_matrix <- function(x,...){
   
   width_CI_results <- x

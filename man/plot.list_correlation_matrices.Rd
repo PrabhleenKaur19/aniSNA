@@ -15,7 +15,9 @@
 To plot correlation analysis results
 }
 \examples{
+\dontrun{
 data(elk_network_2010)
 elk_correlation_analysis <- correlation_analyze(elk_network_2010)
 plot(elk_correlation_analysis)
+}
 }

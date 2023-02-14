@@ -12,8 +12,10 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' data(elk_network_2010)
 #' correlation_analyze(elk_network_2010)
+#' }
 correlation_analyze <- function(network, 
                                n_simulations = 10,
                                subsampling_proportion = c(0.1, 0.30, 0.50, 0.70, 0.90),
@@ -59,9 +61,11 @@ correlation_analyze <- function(network,
 #' @method plot list_correlation_matrices
 #'
 #' @examples
+#' \dontrun{
 #' data(elk_network_2010)
 #' elk_correlation_analysis <- correlation_analyze(elk_network_2010)
 #' plot(elk_correlation_analysis)
+#' }
 plot.list_correlation_matrices <- function(x,...){
   
   correlation_results <- x

@@ -29,6 +29,8 @@ A list of network metrics of class "Subsampled_Network_Metrics". Each element of
 To generate subsamples and obtain network metrics of the subsamples
 }
 \examples{
+\dontrun{
 data(elk_network_2010)
 network_subsamples(elk_network_2010)
+}
 }

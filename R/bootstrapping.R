@@ -42,8 +42,10 @@ obtain_bootstrapped_samples <- function(network, n_nodes = igraph::gorder(networ
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' data(elk_network_2010)
 #' bootstrapped_difference_pvalues(elk_network_2010, n_versions = 100)
+#' }
 bootstrapped_difference_pvalues <- function(network, 
                                    n_versions = 1000, 
                                    seed = 12345, 
@@ -77,9 +79,11 @@ bootstrapped_difference_pvalues <- function(network,
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' data(elk_network_2010)
 #' mean_pvalue_matrix <- bootstrapped_difference_pvalues(elk_network_2010, n_versions = 100)
 #' plot(mean_pvalue_matrix)
+#' }
 plot.bootstrapped_pvalue_matrix <- function(x,...){
   
   bootstrapped_results <- x

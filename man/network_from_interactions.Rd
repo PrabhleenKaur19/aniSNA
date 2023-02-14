@@ -23,6 +23,8 @@ An object of class igraph
 Function to obtain a network structure from interactions dataframe
 }
 \examples{
+\dontrun{
 data(elk_data_2010, elk_interactions_2010)
 network_from_interactions(elk_data_2010, elk_interactions_2010)
+}
 }

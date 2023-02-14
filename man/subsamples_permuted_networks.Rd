@@ -26,6 +26,8 @@ A list of network metrics of class "Subsampled_Permuted_Network_Metrics". Each e
 Title To generate subsamples of the permuted networks and obtain network metrics of those subsamples
 }
 \examples{
+\dontrun{
 data(elk_2010_permutations)
 subsamples_permuted_networks(elk_2010_permutations)
+}
 }
