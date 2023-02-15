@@ -11,11 +11,14 @@
 
 \item{...}{Further arguments are ignored}
 }
+\value{
+No return value, called for side effects.
+}
 \description{
 To plot correlation analysis results
 }
 \examples{
-\dontrun{
+\donttest{
 data(elk_network_2010)
 elk_correlation_analysis <- correlation_analyze(elk_network_2010)
 plot(elk_correlation_analysis)

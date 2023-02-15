@@ -9,6 +9,9 @@ get_network_summary(network)
 \arguments{
 \item{network}{An undirected network with nodes representing animal IDs and edges representing associations between them.}
 }
+\value{
+No return value, called for side effects.
+}
 \description{
 Calculates and prints network summary statistics
 }

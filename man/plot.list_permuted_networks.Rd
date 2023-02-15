@@ -22,16 +22,18 @@ should be chosen from "mean_strength", "density", "diameter", "transitivity". (d
 \item{...}{Further arguments are ignored.}
 }
 \value{
-@method plot list_permuted_networks
+No return value, called for side effects.
+
+ @method plot list_permuted_networks
 }
 \description{
 Function to plot the network metrics distribution of permuted networks
 }
 \examples{
-\dontrun{
+\donttest{
 data(elk_data_2010, elk_network_2010)
 permuted_versions <- obtain_permuted_network_versions(elk_data_2010, 
-temporal_thresh = 7, spatial_thresh = 15, n_permutations = 100, n_cores = 4)
+temporal_thresh = 7, spatial_thresh = 15, n_permutations = 10, n_cores = 4)
 plot(permuted_versions, elk_network_2010)
 }
 }

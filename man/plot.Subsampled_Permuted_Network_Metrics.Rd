@@ -13,11 +13,14 @@
 
 \item{...}{Further arguments are ignored}
 }
+\value{
+No return value, called for side effects.
+}
 \description{
 Title To plot sub-sampling results of the original network and permuted networks
 }
 \examples{
-\dontrun{
+\donttest{
 data(elk_2010_permutations, elk_network_2010)
 elk_subsamples_permuted_networks <- subsamples_permuted_networks(elk_2010_permutations)
 plot(elk_subsamples_permuted_networks, elk_network_2010)

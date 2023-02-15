@@ -11,6 +11,9 @@ plot_network(species_network, seed = 1)
 
 \item{seed}{Seed to be set for layout.}
 }
+\value{
+No return value, called for side effects.
+}
 \description{
 Visualize Animal Network
 }

@@ -19,13 +19,13 @@ to get these values.}
 \item{n_cores}{Number of cores for parallel processing with default 1}
 }
 \value{
-A dataframe consisting of five columns. The first two columns contain animal ids, third and fourth column contain timestamp of their observations and the final column contains the distance between the two individuals
+A dataframe consisting of five columns. The first two columns contain animal ids, third and fourth column contain timestamp of their observations and the final column contains the distance between the two individuals.
 }
 \description{
 To obtain interactions from raw GPS observations
 }
 \examples{
-\dontrun{
+\donttest{
 data(elk_data_2010)
 get_interactions(elk_data_2010, temporal_thresh = 7, spatial_thresh = 15)
 }

@@ -32,7 +32,7 @@ A matrix of p-values whose rows correspond to the sub-sample size and columns co
 To obtain two non-overlapping bootstrapped versions and obtain p-values for the significance of difference between them
 }
 \examples{
-\dontrun{
+\donttest{
 data(elk_network_2010)
 bootstrapped_difference_pvalues(elk_network_2010, n_versions = 100)
 }
