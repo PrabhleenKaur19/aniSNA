@@ -12,7 +12,7 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' data(elk_network_2010)
 #' correlation_analyze(elk_network_2010)
 #' }
@@ -56,12 +56,12 @@ correlation_analyze <- function(network,
 #' @param x A list of matrices obtained from correlation_analyze function
 #' @param ... Further arguments are ignored
 #'
-#' @return NULL
+#' @return No return value, called for side effects.
 #' @export
 #' @method plot list_correlation_matrices
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' data(elk_network_2010)
 #' elk_correlation_analysis <- correlation_analyze(elk_network_2010)
 #' plot(elk_correlation_analysis)

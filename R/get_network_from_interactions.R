@@ -12,10 +12,9 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
 #' data(elk_data_2010, elk_interactions_2010)
 #' network_from_interactions(elk_data_2010, elk_interactions_2010)
-#' }
+#' 
 #' @importFrom rlang .data
 network_from_interactions <- function(species_raw, interactions, n_cores = 1) {
   for (i in which(interactions$Animal_A > interactions$Animal_B)) {

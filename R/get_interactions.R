@@ -24,11 +24,11 @@ get_coordinates_in_radian <- function(species_raw) {
 #' @param spatial_thresh The maximum distance in meters within which two animals are considered interacting
 #' @param n_cores Number of cores for parallel processing with default 1
 #'
-#' @return A dataframe consisting of five columns. The first two columns contain animal ids, third and fourth column contain timestamp of their observations and the final column contains the distance between the two individuals
+#' @return A dataframe consisting of five columns. The first two columns contain animal ids, third and fourth column contain timestamp of their observations and the final column contains the distance between the two individuals.
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' data(elk_data_2010)
 #' get_interactions(elk_data_2010, temporal_thresh = 7, spatial_thresh = 15)
 #' }

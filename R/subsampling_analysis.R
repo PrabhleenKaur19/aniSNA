@@ -11,10 +11,10 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' 
 #' data(elk_network_2010)
 #' network_subsamples(elk_network_2010)
-#' }
+#' 
 network_subsamples <- function(network, 
                               n_simulations = 100, 
                               subsampling_proportion = c(0.1, 0.30, 0.50, 0.70, 0.90),
@@ -54,18 +54,18 @@ network_subsamples <- function(network,
 #' @param network An igraph graph object consisting of observed network
 #' @param ... Further arguments are ignored
 #'
-#' @return NULL
+#' @return No return value, called for side effects.
 #' 
 #' @method plot Subsampled_Network_Metrics
 #' 
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' 
 #' data(elk_network_2010)
 #' elk_subsamples <- network_subsamples(elk_network_2010)
 #' plot(elk_subsamples, elk_network_2010)
-#' }
+#' 
 plot.Subsampled_Network_Metrics <- function(x, network,...){
   
   subsampling_result = x

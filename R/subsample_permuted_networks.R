@@ -10,7 +10,7 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' data(elk_2010_permutations)
 #' subsamples_permuted_networks(elk_2010_permutations)
 #' }
@@ -54,14 +54,14 @@ subsamples_permuted_networks <- function(networks_list,
 #' @param network An igraph graph object consisting of observed network
 #' @param ... Further arguments are ignored
 #'
-#' @return NULL
+#' @return No return value, called for side effects.
 #' 
 #' 
 #' @method plot Subsampled_Permuted_Network_Metrics
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' data(elk_2010_permutations, elk_network_2010)
 #' elk_subsamples_permuted_networks <- subsamples_permuted_networks(elk_2010_permutations)
 #' plot(elk_subsamples_permuted_networks, elk_network_2010)

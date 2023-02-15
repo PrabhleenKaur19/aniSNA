@@ -31,7 +31,7 @@ compare_boot_nets=function(bootnets1, bootnets2, network_metrics) {
 #Function to extract 2 subsamples of equal size and non overlapping
 two_samples_network <- function(network, size){
   if(size > igraph::gorder(network)/2){
-    print("Size of sample is greater than 50%, choose a smaller size\n")
+    stop("Size of sample is greater than 50%, choose a smaller size\n")
     return(NULL)
   }
   sampled_nodes_1 <- sample(igraph::V(network), size = size)
@@ -80,7 +80,7 @@ p_value_matrix <- function(network, size_subnet, n.iter = 10, network_metrics, n
 #Function to obtain a subnetwork of the network passed as first argument of size passed as second argument
 sub_sample_network <- function(network, size){
   if(size > igraph::gorder(network)){
-    print("Size of subnetwork is greater than actual network, choose a smaller size\n")
+    stop("Size of subnetwork is greater than actual network, choose a smaller size\n")
     return(NULL)
   }
   sampled_nodes <- sample(igraph::V(network), size = size)

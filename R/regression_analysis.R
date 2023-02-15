@@ -13,7 +13,7 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' data(elk_network_2010)
 #' regression_slope_analyze(elk_network_2010)
 #' }
@@ -67,12 +67,12 @@ regression_slope_analyze <- function(network,
 #' @param x A list of matrices obtained from regression_slope_analyze function
 #' @param ... Further arguments are ignored
 #'
-#' @return NULL
+#' @return No return value, called for side effects.
 #' @export
 #' @method plot list_regression_matrices
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' data(elk_network_2010)
 #' elk_regression_analysis <- regression_slope_analyze(elk_network_2010)
 #' plot(elk_regression_analysis)

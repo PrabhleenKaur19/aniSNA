@@ -16,7 +16,7 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' data(elk_network_2010)
 #' width_CI(elk_network_2010, n_versions = 100)
 #' }
@@ -49,7 +49,7 @@ width_CI <- function(network,
         mean_value_CI_len[[paste0(scaled_metrics[k], "_", "scaled")]] <- mean_value_CI_len[[scaled_metrics[k]]]/mean_value_CI_len$sample_size_values
       }
     }else{
-      print("scaled_metrics is not a subset of network_metrics")
+      stop("scaled_metrics is not a subset of network_metrics")
     } 
   }
   
@@ -64,12 +64,12 @@ width_CI <- function(network,
 #' @param x A matrix of width of Confidence Intervals obtained from width_CI function
 #' @param ... Further arguments are ignored.
 #'
-#' @return NULL
+#' @return No return value, called for side effects.
 #' @method plot Width_CI_matrix
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' data(elk_network_2010)
 #' width_CI_elk <- width_CI(elk_network_2010, n_versions = 100)
 #' plot(width_CI_elk)

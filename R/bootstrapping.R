@@ -7,7 +7,7 @@
 #' @param seed seed number
 #'
 #' @return A list of class bootstrapped_pvalue_matrix consisting of two elements. The first element contains the original network 
-#'         and the second element contains bootstrapped versions
+#'         and the second element contains bootstrapped versions.
 #' @export
 #'
 #' @examples
@@ -42,7 +42,7 @@ obtain_bootstrapped_samples <- function(network, n_nodes = igraph::gorder(networ
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' data(elk_network_2010)
 #' bootstrapped_difference_pvalues(elk_network_2010, n_versions = 100)
 #' }
@@ -74,12 +74,12 @@ bootstrapped_difference_pvalues <- function(network,
 #' @param x A matrix of p-values obtained from bootstrapped_difference_pvalues function
 #' @param ... Further arguments are ignored.
 #'
-#' @return NULL
+#' @return No return value, called for side effects.
 #' @method plot bootstrapped_pvalue_matrix
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' data(elk_network_2010)
 #' mean_pvalue_matrix <- bootstrapped_difference_pvalues(elk_network_2010, n_versions = 100)
 #' plot(mean_pvalue_matrix)

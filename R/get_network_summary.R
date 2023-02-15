@@ -3,7 +3,7 @@
 #'
 #' @param network An undirected network with nodes representing animal IDs and edges representing associations between them.
 #'
-#' @return NULL
+#' @return No return value, called for side effects.
 #' @export
 #'
 #' @examples
@@ -28,7 +28,7 @@ get_network_summary <- function(network) {
 #' @param species_network An igraph graph object consisting of observed network.
 #' @param seed Seed to be set for layout.
 #'
-#' @return NULL
+#' @return No return value, called for side effects.
 #' @export
 #'
 #' @examples 
