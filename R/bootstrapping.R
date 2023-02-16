@@ -74,7 +74,7 @@ bootstrapped_difference_pvalues <- function(network,
 #' @param x A matrix of p-values obtained from bootstrapped_difference_pvalues function
 #' @param ... Further arguments are ignored.
 #'
-#' @return No return value, called for side effects.
+#' @return No return value, called for side effects. The plot shows p-values between 0 and 1 corresponding to each sample size. 
 #' @method plot bootstrapped_pvalue_matrix
 #' @export
 #'

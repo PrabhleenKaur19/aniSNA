@@ -1,4 +1,4 @@
-#' Title To generate subsamples of the permuted networks and obtain network metrics of those subsamples
+#' To generate subsamples of the permuted networks and obtain network metrics of those subsamples
 #'
 #' @param networks_list A list of igraph objects obtained by permuting the observed network
 #' @param subsampling_proportion A vector depicting the levels (in proportion) at which subsamples to be taken
@@ -48,13 +48,13 @@ subsamples_permuted_networks <- function(networks_list,
 
 
 
-#' Title To plot sub-sampling results of the original network and permuted networks
+#' To plot sub-sampling results of the original network and permuted networks
 #'
 #' @param x A list of matrices obtained from subsamples_permuted_networks function of class "Subsampled_Permuted_Network_Metrics"
 #' @param network An igraph graph object consisting of observed network
 #' @param ... Further arguments are ignored
 #'
-#' @return No return value, called for side effects.
+#' @return No return value, called for side effects. The boxplots show side-by-side comparison of network metrics distribution from subsamples of observed network and subsamples from permuted networks. 
 #' 
 #' 
 #' @method plot Subsampled_Permuted_Network_Metrics

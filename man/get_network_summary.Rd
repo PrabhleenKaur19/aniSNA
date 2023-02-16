@@ -10,7 +10,7 @@ get_network_summary(network)
 \item{network}{An undirected network with nodes representing animal IDs and edges representing associations between them.}
 }
 \value{
-No return value, called for side effects.
+No return value, called for side effects. The function prints values of network metrics to the console.
 }
 \description{
 Calculates and prints network summary statistics

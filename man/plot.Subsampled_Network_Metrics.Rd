@@ -14,7 +14,7 @@
 \item{...}{Further arguments are ignored}
 }
 \value{
-No return value, called for side effects.
+No return value, called for side effects. The boxplots depict range of values, network metrics take when multiple subsamples are chosen from the observed sample.
 }
 \description{
 To plot sub-sampling results

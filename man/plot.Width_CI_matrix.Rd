@@ -2,7 +2,7 @@
 % Please edit documentation in R/confidence_intervals.R
 \name{plot.Width_CI_matrix}
 \alias{plot.Width_CI_matrix}
-\title{Title To plot the results obtained from width_CI function}
+\title{To plot the results obtained from width_CI function}
 \usage{
 \method{plot}{Width_CI_matrix}(x, ...)
 }
@@ -12,10 +12,10 @@
 \item{...}{Further arguments are ignored.}
 }
 \value{
-No return value, called for side effects.
+No return value, called for side effects. Plots show width of confidence intervals corresponding to number of individuals in the sub-sample.
 }
 \description{
-Title To plot the results obtained from width_CI function
+To plot the results obtained from width_CI function
 }
 \examples{
 \donttest{

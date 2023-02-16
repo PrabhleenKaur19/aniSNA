@@ -59,12 +59,12 @@ width_CI <- function(network,
 }
 
 
-#' Title To plot the results obtained from width_CI function
+#' To plot the results obtained from width_CI function
 #'
 #' @param x A matrix of width of Confidence Intervals obtained from width_CI function
 #' @param ... Further arguments are ignored.
 #'
-#' @return No return value, called for side effects.
+#' @return No return value, called for side effects. Plots show width of confidence intervals corresponding to number of individuals in the sub-sample.
 #' @method plot Width_CI_matrix
 #' @export
 #'

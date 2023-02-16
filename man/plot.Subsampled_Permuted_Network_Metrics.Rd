@@ -2,7 +2,7 @@
 % Please edit documentation in R/subsample_permuted_networks.R
 \name{plot.Subsampled_Permuted_Network_Metrics}
 \alias{plot.Subsampled_Permuted_Network_Metrics}
-\title{Title To plot sub-sampling results of the original network and permuted networks}
+\title{To plot sub-sampling results of the original network and permuted networks}
 \usage{
 \method{plot}{Subsampled_Permuted_Network_Metrics}(x, network, ...)
 }
@@ -14,10 +14,10 @@
 \item{...}{Further arguments are ignored}
 }
 \value{
-No return value, called for side effects.
+No return value, called for side effects. The boxplots show side-by-side comparison of network metrics distribution from subsamples of observed network and subsamples from permuted networks.
 }
 \description{
-Title To plot sub-sampling results of the original network and permuted networks
+To plot sub-sampling results of the original network and permuted networks
 }
 \examples{
 \donttest{

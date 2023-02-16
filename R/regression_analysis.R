@@ -62,12 +62,12 @@ regression_slope_analyze <- function(network,
 
 
 
-#'  To plot regression analysis results
+#' To plot regression analysis results
 #'
 #' @param x A list of matrices obtained from regression_slope_analyze function
 #' @param ... Further arguments are ignored
 #'
-#' @return No return value, called for side effects.
+#' @return No return value, called for side effects. The plots show regression slope values corresponding to proportion of individuals in the sample.
 #' @export
 #' @method plot list_regression_matrices
 #'

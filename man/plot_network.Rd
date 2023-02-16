@@ -12,7 +12,7 @@ plot_network(species_network, seed = 1)
 \item{seed}{Seed to be set for layout.}
 }
 \value{
-No return value, called for side effects.
+No return value, called for side effects. The plots depict a visualisation of network structure.
 }
 \description{
 Visualize Animal Network

@@ -3,8 +3,8 @@ Type: Package
 Title: Statistical Network Analysis of Animal Social Networks
 Version: 1.0
 Date: 2023-02-01
-Authors@R: person("Prabhleen", "Kaur", role = c("aut", "cre"), email = "prabhleen.kaur.ucd@gmail.com")
-Description: A collection of tools to obtain networks from animal GPS telemetry observations and 
+Authors@R: c(person("Prabhleen", "Kaur", role = c("aut", "cre"), email = "prabhleen.kaur.ucd@gmail.com"), person("Michael", "Salter-Townshend", role = "ctb", email = "michael.salter-townshend@ucd.ie"))
+Description: Obtain network structures from animal GPS telemetry observations and 
     statistically analyse them to assess their adequacy for social network analysis. Methods include 
     pre-network data permutations, bootstrapping techniques to obtain confidence intervals for global
     network metrics, and correlation and regression analysis of the local network metrics. 

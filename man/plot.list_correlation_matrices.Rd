@@ -12,7 +12,7 @@
 \item{...}{Further arguments are ignored}
 }
 \value{
-No return value, called for side effects.
+No return value, called for side effects. The plots show mean and standard deviation of correlation coefficients obtained over multiple iterations.
 }
 \description{
 To plot correlation analysis results

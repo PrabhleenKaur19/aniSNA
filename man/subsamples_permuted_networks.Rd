@@ -2,7 +2,7 @@
 % Please edit documentation in R/subsample_permuted_networks.R
 \name{subsamples_permuted_networks}
 \alias{subsamples_permuted_networks}
-\title{Title To generate subsamples of the permuted networks and obtain network metrics of those subsamples}
+\title{To generate subsamples of the permuted networks and obtain network metrics of those subsamples}
 \usage{
 subsamples_permuted_networks(
   networks_list,
@@ -23,7 +23,7 @@ A list of network metrics of class "Subsampled_Permuted_Network_Metrics". Each e
         The entries of the matrix provide values of the corresponding metric.
 }
 \description{
-Title To generate subsamples of the permuted networks and obtain network metrics of those subsamples
+To generate subsamples of the permuted networks and obtain network metrics of those subsamples
 }
 \examples{
 \donttest{

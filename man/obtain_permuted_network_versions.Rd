@@ -33,6 +33,6 @@ Function to obtain permuted networks from raw datastream
 \donttest{
 data(elk_data_2010)
 permuted_versions <- obtain_permuted_network_versions(elk_data_2010, 
-temporal_thresh = 7, spatial_thresh = 15, n_permutations = 10, n_cores = 4)
+temporal_thresh = 7, spatial_thresh = 15, n_permutations = 10, n_cores = 2)
 }
 }

@@ -13,7 +13,7 @@
 #' \donttest{
 #' data(elk_data_2010)
 #' permuted_versions <- obtain_permuted_network_versions(elk_data_2010, 
-#' temporal_thresh = 7, spatial_thresh = 15, n_permutations = 10, n_cores = 4)
+#' temporal_thresh = 7, spatial_thresh = 15, n_permutations = 10, n_cores = 2)
 #' }
 obtain_permuted_network_versions <- function(species_raw, temporal_thresh, spatial_thresh, n_permutations, n_cores = 1){
   
@@ -53,7 +53,7 @@ obtain_permuted_network_versions <- function(species_raw, temporal_thresh, spati
 #'
 #' @return No return value, called for side effects.
 #' 
-#'  @method plot list_permuted_networks
+#' @method plot list_permuted_networks
 #' 
 #' @export
 #'
@@ -61,7 +61,7 @@ obtain_permuted_network_versions <- function(species_raw, temporal_thresh, spati
 #' \donttest{
 #' data(elk_data_2010, elk_network_2010)
 #' permuted_versions <- obtain_permuted_network_versions(elk_data_2010, 
-#' temporal_thresh = 7, spatial_thresh = 15, n_permutations = 10, n_cores = 4)
+#' temporal_thresh = 7, spatial_thresh = 15, n_permutations = 10, n_cores = 2)
 #' plot(permuted_versions, elk_network_2010)
 #' }
 plot.list_permuted_networks <- function(x, 

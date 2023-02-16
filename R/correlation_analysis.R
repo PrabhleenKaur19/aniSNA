@@ -56,7 +56,7 @@ correlation_analyze <- function(network,
 #' @param x A list of matrices obtained from correlation_analyze function
 #' @param ... Further arguments are ignored
 #'
-#' @return No return value, called for side effects.
+#' @return No return value, called for side effects. The plots show mean and standard deviation of correlation coefficients obtained over multiple iterations.
 #' @export
 #' @method plot list_correlation_matrices
 #'

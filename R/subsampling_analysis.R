@@ -54,7 +54,7 @@ network_subsamples <- function(network,
 #' @param network An igraph graph object consisting of observed network
 #' @param ... Further arguments are ignored
 #'
-#' @return No return value, called for side effects.
+#' @return No return value, called for side effects. The boxplots depict range of values, network metrics take when multiple subsamples are chosen from the observed sample.
 #' 
 #' @method plot Subsampled_Network_Metrics
 #' 

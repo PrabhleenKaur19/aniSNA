@@ -12,7 +12,7 @@
 \item{...}{Further arguments are ignored.}
 }
 \value{
-No return value, called for side effects.
+No return value, called for side effects. The plot shows p-values between 0 and 1 corresponding to each sample size.
 }
 \description{
 To plot the results obtained from bootstrapped_difference_pvalues function

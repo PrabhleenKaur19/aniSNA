@@ -12,7 +12,7 @@
 \item{...}{Further arguments are ignored}
 }
 \value{
-No return value, called for side effects.
+No return value, called for side effects. The plots show regression slope values corresponding to proportion of individuals in the sample.
 }
 \description{
 To plot regression analysis results
