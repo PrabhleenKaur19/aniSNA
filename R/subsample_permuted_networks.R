@@ -77,7 +77,7 @@ plot.Subsampled_Permuted_Network_Metrics <- function(x, network,...){
   
   variable <- value <- category <- NULL #To predefine variables to be used for ggplot2
   
-  species_sample_results <- network_subsamples(network)
+  species_sample_results <- subsampled_network_metrics(network)
   
   species_permuted_results <- lapply(species_permuted_results, 
                                      function(matrix){cbind(matrix, rep("Permuted", nrow(matrix)))})

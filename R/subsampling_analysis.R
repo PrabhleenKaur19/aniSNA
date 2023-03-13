@@ -13,9 +13,9 @@
 #' @examples
 #' 
 #' data(elk_network_2010)
-#' network_subsamples(elk_network_2010)
+#' subsampled_network_metrics(elk_network_2010)
 #' 
-network_subsamples <- function(network, 
+subsampled_network_metrics <- function(network, 
                               n_simulations = 100, 
                               subsampling_proportion = c(0.1, 0.30, 0.50, 0.70, 0.90),
                               network_metrics = c("density", "mean_strength", "diameter", "transitivity")) {
@@ -63,7 +63,7 @@ network_subsamples <- function(network,
 #' @examples
 #' 
 #' data(elk_network_2010)
-#' elk_subsamples <- network_subsamples(elk_network_2010)
+#' elk_subsamples <- subsampled_network_metrics(elk_network_2010)
 #' plot(elk_subsamples, elk_network_2010)
 #' 
 plot.Subsampled_Network_Metrics <- function(x, network,...){
@@ -94,5 +94,28 @@ plot.Subsampled_Network_Metrics <- function(x, network,...){
   }
 }
 
-
+#' To obtain sub-networks of the observed network
+#'
+#' @param network An igraph object
+#' @param n_subsamples Number of sub-networks to be obtained. (default = 1)
+#' @param subsampling_proportion A value depicting the level (in proportion) at which sub-samples to be taken. (default = 0.5). 
+#' This value should lie between 0 and 1 depicting the proportion of observed nodes to be included in the sub-network. 
+#'
+#' @return A list of size n_subsamples, where each element of the list is an igraph object representing a sub-network of the observed network. 
+#' @export
+#'
+#' @examples
+#' data(elk_network_2010)
+#' obtain_network_subsamples(elk_network_2010, 1, 0.5)
+obtain_network_subsamples <- function(network, n_subsamples = 1, subsampling_proportion = 0.5){
+  
+  subsamples <- vector(mode = "list", length = n_subsamples)
+  
+  for (i in 1:n_subsamples) {
+      random_sample_nodes <- as.vector(sample(igraph::V(network), size = subsampling_proportion * igraph::gorder(network)))
+      sub_network <- igraph::induced_subgraph(network, random_sample_nodes, impl = "auto")
+      subsamples[[i]] <- sub_network
+  }
+  return(subsamples)
+}
 

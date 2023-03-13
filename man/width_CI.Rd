@@ -2,7 +2,7 @@
 % Please edit documentation in R/confidence_intervals.R
 \name{width_CI}
 \alias{width_CI}
-\title{To obtain width of confidence intervals using bootstrapped versions at each level of sub-sampling}
+\title{To obtain width of 95\% confidence intervals using bootstrapped versions at each level of sub-sampling}
 \usage{
 width_CI(
   network,
@@ -33,7 +33,7 @@ Values can be chosen from c("mean_degree", "mean_strength", "diameter").}
 A matrix of class Width_CI_matrix containing width of Confidence Intervals where each row corresponds to the sub-sample size and columns correspond to the chosen network metric.
 }
 \description{
-To obtain width of confidence intervals using bootstrapped versions at each level of sub-sampling
+To obtain width of 95\% confidence intervals using bootstrapped versions at each level of sub-sampling
 }
 \examples{
 \donttest{

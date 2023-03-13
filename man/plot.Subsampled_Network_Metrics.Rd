@@ -22,7 +22,7 @@ To plot sub-sampling results
 \examples{
 
 data(elk_network_2010)
-elk_subsamples <- network_subsamples(elk_network_2010)
+elk_subsamples <- subsampled_network_metrics(elk_network_2010)
 plot(elk_subsamples, elk_network_2010)
 
 }

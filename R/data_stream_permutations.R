@@ -6,7 +6,7 @@
 #' @param n_permutations Number of permuted versions to obtain
 #' @param n_cores Number of cores for parallel processing with default 1
 #'
-#' @return A list of size n_permutations where each element is a network of class igraph obtained by permuting raw datastream 
+#' @return An object of class "list_permuted_networks" of size n_permutations where each element is a network of class igraph obtained by permuting raw datastream 
 #' @export
 #'
 #' @examples
@@ -79,7 +79,7 @@ plot.list_permuted_networks <- function(x,
     permutations_density <- unlist(lapply(networks_list, function(i) igraph::edge_density(i)))
     den_den <- stats::density(permutations_density, na.rm = TRUE)
     plot(den_den, 
-         main = paste("Density Distribution of permuted versions", sep = ""))
+         main = paste("Density Distribution", sep = ""))
     graphics::mtext(paste("Observed Value - ", 
                 round(igraph::edge_density(species_original_network),5), sep = ""), 
           side = 3 , col = "red", cex = 0.8)
@@ -90,7 +90,7 @@ plot.list_permuted_networks <- function(x,
     permutations_mean_strength <- unlist(lapply(networks_list, function(i) mean(igraph::strength(i))))
     den_ms <- stats::density(permutations_mean_strength, na.rm = TRUE)
     plot(den_ms, 
-         main = paste("Mean Strength Distribution of permuted versions", sep = ""))
+         main = paste("Mean Strength Distribution", sep = ""))
     graphics::mtext(paste("Observed Value - ", 
                 round(mean(igraph::strength(species_original_network)),5), sep = ""), 
           side = 3 , col = "red", cex = 0.8)
@@ -101,7 +101,7 @@ plot.list_permuted_networks <- function(x,
     permutations_transitivity <- unlist(lapply(networks_list, function(i) igraph::transitivity(i)))
     den_tran <- stats::density(permutations_transitivity, na.rm = TRUE)
     plot(den_tran, 
-         main = paste("Transitivity Distribution of permuted versions", sep = ""))
+         main = paste("Transitivity Distribution", sep = ""))
     graphics::mtext(paste("Observed Value - ", 
                 round(igraph::transitivity(species_original_network),5), sep = ""), 
           side = 3 , col = "red", cex = 0.8)
@@ -112,7 +112,7 @@ plot.list_permuted_networks <- function(x,
     permutations_diameter <- unlist(lapply(networks_list, function(i) igraph::diameter(i)))
     den_diam <- stats::density(permutations_diameter, na.rm = TRUE)
     plot(den_diam, 
-         main = paste("Diameter Distribution of permuted versions", sep = ""))
+         main = paste("Diameter Distribution", sep = ""))
     graphics::mtext(paste("Observed Value - ", 
                 round(igraph::diameter(species_original_network),5), sep = ""), 
           side = 3 , col = "red", cex = 0.8)

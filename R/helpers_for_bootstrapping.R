@@ -1,4 +1,3 @@
-#Function to obtain 
 net_bootstrap=function(M, n_versions=1000, seed=12345) {
   N=nrow(M)
   b.M=list()
@@ -15,15 +14,12 @@ compare_boot_nets=function(bootnets1, bootnets2, network_metrics) {
   ans=NULL
   boot1.stats=sapply(1:length(bootnets1$boot.nets), function(i) netstats(bootnets1$boot.nets[[i]], network_metrics)) # generates all the bootstrap statistics
   boot2.stats=sapply(1:length(bootnets2$boot.nets), function(i) netstats(bootnets2$boot.nets[[i]], network_metrics))
-  orig1.stats=netstats(bootnets1$orig.net, network_metrics)
-  orig2.stats=netstats(bootnets2$orig.net, network_metrics)
-  orig.diff=orig1.stats-orig2.stats
-  for (i in 1:length(orig.diff)) {
-    # calculate proportion of times bootstrapped network statistic is more extreme than observed network statistic
+
+  for (i in 1:length(network_metrics)) {
     t.stat=(mean(boot1.stats[i,])-mean(boot2.stats[i,]))/sqrt(stats::var(boot1.stats[i,]) + stats::var(boot2.stats[i,]))
     ans[i]=2*stats::pt(-abs(t.stat),df=2*length(boot1.stats[i,])-2) # two-sided t-test
   }
-  names(ans)=names(orig1.stats) # returns a named vector of p-values
+  names(ans)=network_metrics # returns a named vector of p-values
   return(ans)
 }
 

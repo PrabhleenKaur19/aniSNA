@@ -1,6 +1,6 @@
 
 
-#' To obtain width of confidence intervals using bootstrapped versions at each level of sub-sampling
+#' To obtain width of 95\% confidence intervals using bootstrapped versions at each level of sub-sampling
 #'
 #' @param network An igraph object
 #' @param n_versions Number of bootstrapped versions to be used. (default = 100)
@@ -94,4 +94,43 @@ plot.Width_CI_matrix <- function(x,...){
            xlab = "Sample Size",
            ylab = "Width of Confidence Interval")
   }
+}
+
+
+
+#' To obtain 95\% confidence intervals around the observed network statistics
+#' 
+#'
+#' @param network An igraph object
+#' @param n_versions  Number of bootstrapped versions to be used. (default = 100)
+#' @param network_metrics Network metrics to be evaluated. This should be supplied as a character vector and the values 
+#' should be chosen from "mean_degree", "mean_strength", "density", "diameter", "transitivity". (default = c("mean_degree", "mean_strength", "density", "diameter", "transitivity"))
+#'
+#' @return A DataFrame consisting of three columns. The first column contains the value of observed network metric, the second and 
+#' third column represent the lower and upper limit of 95% confidence interval respectively. The rows correspond to the network metrics chosen to evaluate. 
+#' @export
+#'
+#' @examples
+#' \donttest{
+#' data(elk_network_2010)
+#' obtain_confidence_intervals(elk_network_2010, n_versions = 100, 
+#' network_metrics = c("mean_degree", "mean_strength", "density", "diameter", "transitivity"))
+#' }
+obtain_confidence_intervals <- function(network, 
+                                        n_versions = 100,
+                                        network_metrics = c("mean_degree", "mean_strength", "density", "diameter", "transitivity")){
+  
+  ans = data.frame(matrix(nrow = length(network_metrics), ncol = 3)) 
+  bootnets <- obtain_bootstrapped_samples(network, n_versions = n_versions)
+  boot.stats=sapply(1:length(bootnets$boot.nets), function(i) netstats(bootnets$boot.nets[[i]], network_metrics))
+  orig.stats=netstats(bootnets$orig.net, network_metrics)
+  
+  for (i in 1:length(boot.stats[,1])) {
+    quant <- stats::quantile(boot.stats[i,], probs=c(0.025,0.975), na.rm = TRUE)
+    ans[i,] <- c(orig.stats[i], quant[1], quant[2])
+  }
+  rownames(ans)=names(boot.stats[,1])
+  colnames(ans)=c("Observed_network_metric", "Lower_limit", "Upper_limit")
+  return(ans)
+  
 }

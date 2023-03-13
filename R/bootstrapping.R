@@ -1,13 +1,13 @@
 
-#' To obtain bootstrapped versions of a network 
+#' To obtain bootstrapped versions of a network's adjacency matrix
 #'
 #' @param network An igraph object
 #' @param n_nodes Number of nodes to be selected in bootstrapped versions (default : All nodes)
 #' @param n_versions Number of bootstrapped versions required
 #' @param seed seed number
 #'
-#' @return A list of class bootstrapped_pvalue_matrix consisting of two elements. The first element contains the original network 
-#'         and the second element contains bootstrapped versions.
+#' @return A list of class bootstrapped_pvalue_matrix consisting of two elements. The first element contains the adjacency matrix of the original network 
+#'         and the second element contains bootstrapped versions of the adjacency matrices.
 #' @export
 #'
 #' @examples
