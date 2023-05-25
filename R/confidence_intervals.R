@@ -6,50 +6,53 @@
 #' @param n_versions Number of bootstrapped versions to be used. (default = 100)
 #' @param seed seed number
 #' @param n.iter Number of iterations at each level. (default = 10)
-#' @param network_metrics Network metrics to be evaluated. This should be supplied as a character vector and the values 
-#' should be chosen from "mean_degree", "mean_strength", "density", "diameter", "transitivity". (default = c("mean_degree", "mean_strength", "density", "diameter", "transitivity"))
-#' @param scaled_metrics Optional. A vector subset of network_metrics with the names of metrics that should be scaled. 
-#' Values can be chosen from c("mean_degree", "mean_strength", "diameter").
+#' @param network_metrics_functions_list A list consisting of function definitions of the network metrics that the user wants to evaluate. Each element in the list should have an assigned name.
+#'  Default = c("edge_density" = function(x) igraph::edge_density(x), "diameter" = function(x) igraph::diameter(x, weights = NA), "transitivity" = function(x) igraph::transitivity(x))
+#' @param scaled_metrics Optional. A vector subset of the names of functions in network_metrics_functions_list with the metrics that should be scaled. For example scaled_metrics = c("diameter")
 #'
 #'
 #' @return A matrix of class Width_CI_matrix containing width of Confidence Intervals where each row corresponds to the sub-sample size and columns correspond to the chosen network metric.
+#' Sub-sample size values occur in multiples of 10 and range from 10 to maximum multiple of 10 less than or equal to the number of nodes in the network.
 #' @export
 #'
 #' @examples
 #' \donttest{
 #' data(elk_network_2010)
-#' width_CI(elk_network_2010, n_versions = 100)
+#' width_CI_elk <- width_CI(elk_network_2010, n_versions = 100)
+#' plot(width_CI_elk)
 #' }
 width_CI <- function(network,
                      n_versions = 100,
                      seed = 12345, 
                      n.iter = 10, 
-                     network_metrics = c("mean_degree", "mean_strength", "density", "diameter", "transitivity"),
+                     network_metrics_functions_list = c("edge_density" = function(x) igraph::edge_density(x),
+                                                        "diameter" = function(x) igraph::diameter(x, weights = NA),
+                                                        "transitivity" = function(x) igraph::transitivity(x)),
                      scaled_metrics = NULL){
   
   sample_size_values <- seq(10, igraph::gorder(network), 10)
   mean_value_CI_len <- data.frame(temp = numeric(0))
-  for(i in 1:length(network_metrics)){
-    mean_value_CI_len[[network_metrics[i]]] <- numeric(0)
+  for(i in 1:length(network_metrics_functions_list)){
+    mean_value_CI_len[[names(network_metrics_functions_list)[i]]] <- numeric(0)
   }
   mean_value_CI_len <- mean_value_CI_len[,-1]
   
   j <- 1
   for(s in sample_size_values){
-    metrics_CI_len <- CI_matrix(network, size_subnet = s, n_versions, n.iter, network_metrics)
+    metrics_CI_len <- CI_matrix(network, size_subnet = s, n_versions, n.iter, network_metrics_functions_list)
     mean_value_CI_len[j,] <- apply(metrics_CI_len, 2, mean, na.rm=TRUE)
     j <- j+1
   }
   mean_value_CI_len <- cbind(sample_size_values, mean_value_CI_len)
   
   if(is.null(scaled_metrics) == FALSE){
-   
-    if(all(scaled_metrics %in% network_metrics)){
+    
+    if(all(scaled_metrics %in% names(network_metrics_functions_list))){
       for(k in 1:length(scaled_metrics)){
         mean_value_CI_len[[paste0(scaled_metrics[k], "_", "scaled")]] <- mean_value_CI_len[[scaled_metrics[k]]]/mean_value_CI_len$sample_size_values
       }
     }else{
-      stop("scaled_metrics is not a subset of network_metrics")
+      stop("scaled_metrics is not a subset of names of network_metrics_functions_list")
     } 
   }
   
@@ -57,6 +60,7 @@ width_CI <- function(network,
   
   return(mean_value_CI_len)
 }
+
 
 
 #' To plot the results obtained from width_CI function
@@ -103,8 +107,8 @@ plot.Width_CI_matrix <- function(x,...){
 #'
 #' @param network An igraph object
 #' @param n_versions  Number of bootstrapped versions to be used. (default = 100)
-#' @param network_metrics Network metrics to be evaluated. This should be supplied as a character vector and the values 
-#' should be chosen from "mean_degree", "mean_strength", "density", "diameter", "transitivity". (default = c("mean_degree", "mean_strength", "density", "diameter", "transitivity"))
+#' @param network_metrics_functions_list A list consisting of function definitions of the network metrics that the user wants to evaluate. Each element in the list should have an assigned name.
+#'  Default = c("edge_density" = function(x) igraph::edge_density(x), "diameter" = function(x) igraph::diameter(x, weights = NA), "transitivity" = function(x) igraph::transitivity(x))
 #'
 #' @return A DataFrame consisting of three columns. The first column contains the value of observed network metric, the second and 
 #' third column represent the lower and upper limit of 95% confidence interval respectively. The rows correspond to the network metrics chosen to evaluate. 
@@ -114,16 +118,20 @@ plot.Width_CI_matrix <- function(x,...){
 #' \donttest{
 #' data(elk_network_2010)
 #' obtain_confidence_intervals(elk_network_2010, n_versions = 100, 
-#' network_metrics = c("mean_degree", "mean_strength", "density", "diameter", "transitivity"))
+#' network_metrics_functions_list = c("edge_density" = function(x) igraph::edge_density(x),
+#' "diameter" = function(x) igraph::diameter(x, weights = NA),
+#' "transitivity" = function(x) igraph::transitivity(x)))
 #' }
 obtain_confidence_intervals <- function(network, 
                                         n_versions = 100,
-                                        network_metrics = c("mean_degree", "mean_strength", "density", "diameter", "transitivity")){
+                                        network_metrics_functions_list = c("edge_density" = function(x) igraph::edge_density(x),
+                                                                           "diameter" = function(x) igraph::diameter(x, weights = NA),
+                                                                           "transitivity" = function(x) igraph::transitivity(x))){
   
-  ans = data.frame(matrix(nrow = length(network_metrics), ncol = 3)) 
+  ans = data.frame(matrix(nrow = length(network_metrics_functions_list), ncol = 3)) 
   bootnets <- obtain_bootstrapped_samples(network, n_versions = n_versions)
-  boot.stats=sapply(1:length(bootnets$boot.nets), function(i) netstats(bootnets$boot.nets[[i]], network_metrics))
-  orig.stats=netstats(bootnets$orig.net, network_metrics)
+  boot.stats=sapply(1:length(bootnets$boot.nets), function(i) network_metrics_evaluate_from_adjacency_matrix(bootnets$boot.nets[[i]], network_metrics_functions_list))
+  orig.stats=network_metrics_evaluate_from_adjacency_matrix(bootnets$orig.net, network_metrics_functions_list)
   
   for (i in 1:length(boot.stats[,1])) {
     quant <- stats::quantile(boot.stats[i,], probs=c(0.025,0.975), na.rm = TRUE)

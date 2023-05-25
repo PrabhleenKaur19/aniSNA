@@ -34,6 +34,10 @@ To generate subsamples and obtain network metrics of the subsamples
 \examples{
 
 data(elk_network_2010)
-subsampled_network_metrics(elk_network_2010)
+elk_subsamples <- subsampled_network_metrics(elk_network_2010)
+plot(elk_subsamples, elk_network_2010, 
+network_metrics_functions_list = c("edge_density" = function(x) igraph::edge_density(x),
+"diameter" = function(x) igraph::diameter(x, weights = NA),
+"transitivity" = function(x) igraph::transitivity(x)))
 
 }

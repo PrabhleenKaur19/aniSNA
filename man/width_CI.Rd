@@ -9,8 +9,9 @@ width_CI(
   n_versions = 100,
   seed = 12345,
   n.iter = 10,
-  network_metrics = c("mean_degree", "mean_strength", "density", "diameter",
-    "transitivity"),
+  network_metrics_functions_list = c(edge_density = function(x) igraph::edge_density(x),
+    diameter = function(x) igraph::diameter(x, weights = NA), transitivity = function(x)
+    igraph::transitivity(x)),
   scaled_metrics = NULL
 )
 }
@@ -23,14 +24,14 @@ width_CI(
 
 \item{n.iter}{Number of iterations at each level. (default = 10)}
 
-\item{network_metrics}{Network metrics to be evaluated. This should be supplied as a character vector and the values 
-should be chosen from "mean_degree", "mean_strength", "density", "diameter", "transitivity". (default = c("mean_degree", "mean_strength", "density", "diameter", "transitivity"))}
+\item{network_metrics_functions_list}{A list consisting of function definitions of the network metrics that the user wants to evaluate. Each element in the list should have an assigned name.
+Default = c("edge_density" = function(x) igraph::edge_density(x), "diameter" = function(x) igraph::diameter(x, weights = NA), "transitivity" = function(x) igraph::transitivity(x))}
 
-\item{scaled_metrics}{Optional. A vector subset of network_metrics with the names of metrics that should be scaled. 
-Values can be chosen from c("mean_degree", "mean_strength", "diameter").}
+\item{scaled_metrics}{Optional. A vector subset of the names of functions in network_metrics_functions_list with the metrics that should be scaled. For example scaled_metrics = c("diameter")}
 }
 \value{
 A matrix of class Width_CI_matrix containing width of Confidence Intervals where each row corresponds to the sub-sample size and columns correspond to the chosen network metric.
+Sub-sample size values occur in multiples of 10 and range from 10 to maximum multiple of 10 less than or equal to the number of nodes in the network.
 }
 \description{
 To obtain width of 95\% confidence intervals using bootstrapped versions at each level of sub-sampling
@@ -38,6 +39,7 @@ To obtain width of 95\% confidence intervals using bootstrapped versions at each
 \examples{
 \donttest{
 data(elk_network_2010)
-width_CI(elk_network_2010, n_versions = 100)
+width_CI_elk <- width_CI(elk_network_2010, n_versions = 100)
+plot(width_CI_elk)
 }
 }
