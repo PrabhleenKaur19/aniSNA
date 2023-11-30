@@ -2,7 +2,7 @@
 % Please edit documentation in R/correlation_analysis.R
 \name{correlation_analyze}
 \alias{correlation_analyze}
-\title{To perform correlation analysis for local network metrics}
+\title{To perform correlation analysis for node-level network metrics}
 \usage{
 correlation_analyze(
   network,
@@ -41,7 +41,7 @@ A list of network metrics of class list_correlation_matrices. Each element of li
         full network and the sub-sampled network for the corresponding metric.
 }
 \description{
-To perform correlation analysis for local network metrics
+To perform correlation analysis for node-level network metrics
 }
 \examples{
 \donttest{

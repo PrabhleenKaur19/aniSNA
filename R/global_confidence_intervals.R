@@ -1,12 +1,12 @@
 
 
-#' To obtain width of 95\% confidence intervals using bootstrapped versions at each level of sub-sampling
+#' To obtain width of 95\% confidence intervals for global network metrics using bootstrapped versions at each level of sub-sampling
 #'
 #' @param network An igraph object
 #' @param n_versions Number of bootstrapped versions to be used. (default = 100)
 #' @param seed seed number
 #' @param n.iter Number of iterations at each level. (default = 10)
-#' @param network_metrics_functions_list A list consisting of function definitions of the network metrics that the user wants to evaluate. Each element in the list should have an assigned name.
+#' @param network_metrics_functions_list A list consisting of function definitions of the global network metrics that the user wants to evaluate. Each element in the list should have an assigned name.
 #'  Default = c("edge_density" = function(x) igraph::edge_density(x), "diameter" = function(x) igraph::diameter(x, weights = NA), "transitivity" = function(x) igraph::transitivity(x))
 #' @param scaled_metrics Optional. A vector subset of the names of functions in network_metrics_functions_list with the metrics that should be scaled. For example scaled_metrics = c("diameter")
 #'
@@ -18,10 +18,10 @@
 #' @examples
 #' \donttest{
 #' data(elk_network_2010)
-#' width_CI_elk <- width_CI(elk_network_2010, n_versions = 100)
+#' width_CI_elk <- global_width_CI(elk_network_2010, n_versions = 100)
 #' plot(width_CI_elk)
 #' }
-width_CI <- function(network,
+global_width_CI <- function(network,
                      n_versions = 100,
                      seed = 12345, 
                      n.iter = 10, 
@@ -65,7 +65,7 @@ width_CI <- function(network,
 
 #' To plot the results obtained from width_CI function
 #'
-#' @param x A matrix of width of Confidence Intervals obtained from width_CI function
+#' @param x A matrix of width of Confidence Intervals obtained from global_width_CI function
 #' @param ... Further arguments are ignored.
 #'
 #' @return No return value, called for side effects. Plots show width of confidence intervals corresponding to number of individuals in the sub-sample.
@@ -75,7 +75,7 @@ width_CI <- function(network,
 #' @examples
 #' \donttest{
 #' data(elk_network_2010)
-#' width_CI_elk <- width_CI(elk_network_2010, n_versions = 100)
+#' width_CI_elk <- global_width_CI(elk_network_2010, n_versions = 100)
 #' plot(width_CI_elk)
 #' }
 plot.Width_CI_matrix <- function(x,...){
@@ -102,7 +102,7 @@ plot.Width_CI_matrix <- function(x,...){
 
 
 
-#' To obtain 95\% confidence intervals around the observed network statistics
+#' To obtain 95\% confidence intervals around the observed global network statistics
 #' 
 #'
 #' @param network An igraph object
@@ -117,12 +117,12 @@ plot.Width_CI_matrix <- function(x,...){
 #' @examples
 #' \donttest{
 #' data(elk_network_2010)
-#' obtain_confidence_intervals(elk_network_2010, n_versions = 100, 
+#' obtain_global_confidence_intervals(elk_network_2010, n_versions = 100, 
 #' network_metrics_functions_list = c("edge_density" = function(x) igraph::edge_density(x),
 #' "diameter" = function(x) igraph::diameter(x, weights = NA),
 #' "transitivity" = function(x) igraph::transitivity(x)))
 #' }
-obtain_confidence_intervals <- function(network, 
+obtain_global_confidence_intervals <- function(network, 
                                         n_versions = 100,
                                         network_metrics_functions_list = c("edge_density" = function(x) igraph::edge_density(x),
                                                                            "diameter" = function(x) igraph::diameter(x, weights = NA),

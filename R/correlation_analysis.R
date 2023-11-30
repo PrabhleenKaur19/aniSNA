@@ -1,4 +1,4 @@
-#' To perform correlation analysis for local network metrics
+#' To perform correlation analysis for node-level network metrics
 #'
 #' @param network An igraph graph object consisting of observed network
 #' @param n_simulations Number of sub-samples to be obtained at each level
@@ -63,8 +63,8 @@ correlation_analyze <- function(network,
 
 #' To plot correlation analysis results
 #'
-#' @param x A list of matrices obtained from correlation_analyze function
-#' @param ... Further arguments are ignored
+#' @param x A list of matrices obtained from correlation_analyze function.
+#' @param ... Further arguments are ignored.
 #'
 #' @return No return value, called for side effects. The plots show mean and standard deviation of correlation coefficients obtained over multiple iterations.
 #' @export
