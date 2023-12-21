@@ -10,18 +10,13 @@ obtain_node_level_CI(
   network_metrics_functions_list = c(degree = igraph::degree, strength =
     igraph::strength, betweenness = igraph::betweenness, clustering_coefficient =
     function(x) {
-     trans <- igraph::transitivity(x, type = "local", isolates =
-    "zero")
+     trans <- igraph::transitivity(x, type = "local", vids =
+    igraph::V(x), isolates = "zero")
      names(trans) <- igraph::V(x)$name
-     return(trans)
- },
-    eigenvector_centrality = function(x) {
-     eigen_cen <-
-    igraph::eigen_centrality(x)$vector
-     names(eigen_cen) <- igraph::V(x)$name
     
-    return(eigen_cen)
- }),
+    return(trans)
+ }, eigenvector_centrality = function(x)
+    igraph::eigen_centrality(x)$vector),
   n_cores = 1
 )
 }
@@ -35,14 +30,12 @@ definition should include two parameters, one for the main network and another o
 network_metrics_functions_list = c("degree" = igraph::degree, 
 "strength" = igraph::strength , 
 "betweenness" = igraph::betweenness, 
-"clustering_coefficient" = function(x){
+"clustering_coefficient" = function(x) \{
 trans <- igraph::transitivity(x, type = "local", isolates = "zero")
 names(trans) <- igraph::V(x)$name;return(trans)
-},
-"eigenvector_centrality" = function(x){
-eigen_cen <- igraph::eigen_centrality(x)$vector
-names(eigen_cen) <- igraph::V(x)$name;return(eigen_cen)
-})}
+\},
+"eigenvector_centrality" = function(x) igraph::eigen_centrality(x)$vector
+)}
 
 \item{n_cores}{Number of cores for parallel processing with default 1.}
 }

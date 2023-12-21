@@ -7,14 +7,12 @@
 #' network_metrics_functions_list = c("degree" = igraph::degree, 
 #'"strength" = igraph::strength , 
 #'"betweenness" = igraph::betweenness, 
-#'"clustering_coefficient" = function(x){
+#'"clustering_coefficient" = function(x) \{
 #'trans <- igraph::transitivity(x, type = "local", isolates = "zero")
 #'names(trans) <- igraph::V(x)$name;return(trans)
-#'},
-#'"eigenvector_centrality" = function(x){
-#'eigen_cen <- igraph::eigen_centrality(x)$vector
-#'names(eigen_cen) <- igraph::V(x)$name;return(eigen_cen)
-#'})
+#'\},
+#'"eigenvector_centrality" = function(x) igraph::eigen_centrality(x)$vector
+#')
 #' @param n_cores Number of cores for parallel processing with default 1.
 #'
 #' @return A list of dataframes of class list_node_level_CI. Each element of list is a dataframe having five columns and
@@ -37,15 +35,11 @@ obtain_node_level_CI <- function(network,
                                                                     "strength" = igraph::strength , 
                                                                     "betweenness" = igraph::betweenness, 
                                                                     "clustering_coefficient" = function(x){
-                                                                      trans <- igraph::transitivity(x, type = "local", isolates = "zero");
+                                                                      trans <- igraph::transitivity(x, type = "local", vids = igraph::V(x) ,isolates = "zero");
                                                                       names(trans) <- igraph::V(x)$name;
                                                                       return(trans)
                                                                     },
-                                                                    "eigenvector_centrality" = function(x){
-                                                                      eigen_cen <- igraph::eigen_centrality(x)$vector;
-                                                                      names(eigen_cen) <- igraph::V(x)$name;
-                                                                      return(eigen_cen)
-                                                                    }),
+                                                                    "eigenvector_centrality" = function(x) igraph::eigen_centrality(x)$vector),
                                  n_cores = 1){
   
   bs_samples_matrix <- obtain_bootstrapped_samples(network, n_versions = n_versions)
