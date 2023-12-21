@@ -7,10 +7,14 @@
 #' network_metrics_functions_list = c("degree" = igraph::degree, 
 #'"strength" = igraph::strength , 
 #'"betweenness" = igraph::betweenness, 
-#'"clustering coefficient" = function(x) {trans <- igraph::transitivity(x, type = "local", isolates = "zero")
-#'names(trans) <- igraph::V(x)$name;return(trans)},
-#'"eigenvector_centrality" = function(x) {eigen_cen <- igraph::eigen_centrality(x)$vector
-#'names(eigen_cen) <- igraph::V(x)$name;return(eigen_cen)})
+#'"clustering_coefficient" = function(x){
+#'trans <- igraph::transitivity(x, type = "local", isolates = "zero")
+#'names(trans) <- igraph::V(x)$name;return(trans)
+#'},
+#'"eigenvector_centrality" = function(x){
+#'eigen_cen <- igraph::eigen_centrality(x)$vector
+#'names(eigen_cen) <- igraph::V(x)$name;return(eigen_cen)
+#'})
 #' @param n_cores Number of cores for parallel processing with default 1.
 #'
 #' @return A list of dataframes of class list_node_level_CI. Each element of list is a dataframe having five columns and
@@ -32,12 +36,16 @@ obtain_node_level_CI <- function(network,
                                  network_metrics_functions_list = c("degree" = igraph::degree, 
                                                                     "strength" = igraph::strength , 
                                                                     "betweenness" = igraph::betweenness, 
-                                                                    "clustering coefficient" = function(x) {trans <- igraph::transitivity(x, type = "local", isolates = "zero")
-                                                                    names(trans) <- igraph::V(x)$name
-                                                                    return(trans)},
-                                                                    "eigenvector_centrality" = function(x) {eigen_cen <- igraph::eigen_centrality(x)$vector
-                                                                    names(eigen_cen) <- igraph::V(x)$name
-                                                                    return(eigen_cen)}),
+                                                                    "clustering_coefficient" = function(x){
+                                                                      trans <- igraph::transitivity(x, type = "local", isolates = "zero");
+                                                                      names(trans) <- igraph::V(x)$name;
+                                                                      return(trans)
+                                                                    },
+                                                                    "eigenvector_centrality" = function(x){
+                                                                      eigen_cen <- igraph::eigen_centrality(x)$vector;
+                                                                      names(eigen_cen) <- igraph::V(x)$name;
+                                                                      return(eigen_cen)
+                                                                    }),
                                  n_cores = 1){
   
   bs_samples_matrix <- obtain_bootstrapped_samples(network, n_versions = n_versions)
@@ -100,20 +108,20 @@ plot.list_node_level_CI <- function(x,...){
          ylab = names(node_level_all_metrics)[[j]],
          ylim = c(min(node_level_all_metrics[[j]]$metric_value, node_level_all_metrics[[j]]$lower_CI), max(node_level_all_metrics[[j]]$metric_value, node_level_all_metrics[[j]]$upper_CI)),
          xlim = c(1, length(node_level_all_metrics[[j]]$node_number)))
-   
+    
     graphics::abline(h =  pretty(max_limit), 
-           v = 1:length(node_level_all_metrics[[j]]$node_number), lty = 1, col = "grey89")
+                     v = 1:length(node_level_all_metrics[[j]]$node_number), lty = 1, col = "grey89")
     
     plotrix::plotCI(x = 1:length(node_level_all_metrics[[j]]$node_number),
-           y = node_level_all_metrics[[j]]$metric_value,
-           li =node_level_all_metrics[[j]]$lower_CI,
-           ui = node_level_all_metrics[[j]]$upper_CI, 
-           scol = "black", 
-           add = TRUE)
+                    y = node_level_all_metrics[[j]]$metric_value,
+                    li =node_level_all_metrics[[j]]$lower_CI,
+                    ui = node_level_all_metrics[[j]]$upper_CI, 
+                    scol = "black", 
+                    add = TRUE)
     graphics::points(node_level_all_metrics[[j]]$metric_value, pch=19, col = "orange", cex = 0.7)
     graphics::axis(side = 2, at=pretty(max_limit), las=2)
     graphics::axis(side = 1, at=1:length(node_level_all_metrics[[j]]$node_number), 
-         labels=node_level_all_metrics[[j]]$node_number, las=2, tick = TRUE, cex.axis = 0.85)
+                   labels=node_level_all_metrics[[j]]$node_number, las=2, tick = TRUE, cex.axis = 0.85)
   }
 }
 

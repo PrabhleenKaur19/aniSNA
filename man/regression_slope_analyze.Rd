@@ -15,8 +15,8 @@ regression_slope_analyze(
     function(net, sub_net) igraph::transitivity(net, type = "local", vids =
     igraph::V(sub_net)$name), eigenvector_centrality = function(net, sub_net) {
     
-    igraph::eigen_centrality(net)$vector
- }[igraph::V(sub_net)$name])
+    igraph::eigen_centrality(net)$vector[igraph::V(sub_net)$name]
+ })
 )
 }
 \arguments{
@@ -32,7 +32,7 @@ definition should include two parameters, one for the main network and another o
  "strength" = function(net, sub_net) igraph::strength(net, v = igraph::V(sub_net)$name),
  "betweenness" = function(net, sub_net) igraph::betweenness(net, v = igraph::V(sub_net)$name),
  "clustering_coefficient" = function(net, sub_net) igraph::transitivity(net, type = "local", vids = igraph::V(sub_net)$name),
- "eigenvector_centrality" = function(net, sub_net) {igraph::eigen_centrality(net)$vector}[igraph::V(sub_net)$name])}
+ "eigenvector_centrality" = function(net, sub_net) {igraph::eigen_centrality(net)$vector[igraph::V(sub_net)$name]})}
 }
 \value{
 A list of network metrics of class list_regression_matrices. Each element of list is a matrix whose columns 

@@ -8,7 +8,7 @@ obtain_node_level_CI(
   network,
   n_versions = 100,
   network_metrics_functions_list = c(degree = igraph::degree, strength =
-    igraph::strength, betweenness = igraph::betweenness, `clustering coefficient` =
+    igraph::strength, betweenness = igraph::betweenness, clustering_coefficient =
     function(x) {
      trans <- igraph::transitivity(x, type = "local", isolates =
     "zero")
@@ -35,10 +35,14 @@ definition should include two parameters, one for the main network and another o
 network_metrics_functions_list = c("degree" = igraph::degree, 
 "strength" = igraph::strength , 
 "betweenness" = igraph::betweenness, 
-"clustering coefficient" = function(x) {trans <- igraph::transitivity(x, type = "local", isolates = "zero")
-names(trans) <- igraph::V(x)$name;return(trans)},
-"eigenvector_centrality" = function(x) {eigen_cen <- igraph::eigen_centrality(x)$vector
-names(eigen_cen) <- igraph::V(x)$name;return(eigen_cen)})}
+"clustering_coefficient" = function(x){
+trans <- igraph::transitivity(x, type = "local", isolates = "zero")
+names(trans) <- igraph::V(x)$name;return(trans)
+},
+"eigenvector_centrality" = function(x){
+eigen_cen <- igraph::eigen_centrality(x)$vector
+names(eigen_cen) <- igraph::V(x)$name;return(eigen_cen)
+})}
 
 \item{n_cores}{Number of cores for parallel processing with default 1.}
 }
