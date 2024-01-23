@@ -80,8 +80,8 @@ plot.list_permuted_networks <- function(x,
   for(f in network_metrics_functions_list){
     permutations_metric <- unlist(lapply(networks_list, function(i) f(i)))
     density_metric <- stats::density(permutations_metric, na.rm = TRUE)
-    plot(density_metric, 
-         main = paste0(names(network_metrics_functions_list)[j]," distribution"))
+    hist(permutations_metric, 
+         main = paste0(names(network_metrics_functions_list)[j]," distribution"), xlab = "Metric values (Permuted versions)")
     graphics::mtext(paste("Observed value - ", 
                           round(f(species_original_network),5), sep = ""), 
                     side = 3 , col = "red", cex = 0.8)
