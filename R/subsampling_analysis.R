@@ -103,6 +103,8 @@ plot.Subsampled_Network_Metrics <- function(x, network,
     graphics::title(names(subsampling_result)[i], adj = 0.5, line = 1)
     graphics::legend("bottomright", legend = "Observed Value",col = "red", lty = 1)
     graphics::abline(h = metrics_list[[i]], col = "red")
+    graphics::mtext(paste("Observed value (red line) : ", 
+                          round(metrics_list[[i]],3), sep = ""), side = 3 , col = "red", cex = 0.8)
   }
 }
 
