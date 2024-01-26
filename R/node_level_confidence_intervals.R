@@ -99,9 +99,10 @@ plot.list_node_level_CI <- function(x,...){
          yaxt ="n",
          type = 'n',
          xlab = "Node Number",
-         ylab = names(node_level_all_metrics)[[j]],
+         ylab = "Value",
          ylim = c(min(node_level_all_metrics[[j]]$metric_value, node_level_all_metrics[[j]]$lower_CI), max(node_level_all_metrics[[j]]$metric_value, node_level_all_metrics[[j]]$upper_CI)),
-         xlim = c(1, length(node_level_all_metrics[[j]]$node_number)))
+         xlim = c(1, length(node_level_all_metrics[[j]]$node_number)),
+         main = names(node_level_all_metrics)[[j]])
     
     graphics::abline(h =  pretty(max_limit), 
                      v = 1:length(node_level_all_metrics[[j]]$node_number), lty = 1, col = "grey89")
