@@ -1,8 +1,8 @@
 Package: aniSNA
 Type: Package
 Title: Statistical Network Analysis of Animal Social Networks
-Version: 1.1.0
-Date: 2023-12-21
+Version: 1.1.1
+Date: 2024-03-22
 Authors@R: c(person("Prabhleen", "Kaur", role = c("aut", "cre"), email = "prabhleen.kaur.ucd@gmail.com"), person("Michael", "Salter-Townshend", role = "ctb", email = "michael.salter-townshend@ucd.ie"))
 Description: Obtain network structures from animal GPS telemetry observations and 
     statistically analyse them to assess their adequacy for social network analysis. Methods include 
