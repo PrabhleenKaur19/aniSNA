@@ -1,5 +1,6 @@
 ---
 output: github_document
+bibliography: references.bib
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -18,5 +19,4 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of aniSNA is to provide easy to use functions for the ecologists aiming to perform social network analysis
-on the animal GPS telemetry data.       
+The goal of aniSNA is to provide easy to use functions for the ecologists aiming to perform social network analysis on the animal GPS telemetry data. See @kaur-2024A and @kaur-2024B for details.        
