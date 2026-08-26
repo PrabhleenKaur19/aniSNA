@@ -36,7 +36,7 @@ node_level_CI <- function(network,
                                                                     "strength" = igraph::strength , 
                                                                     "betweenness" = igraph::betweenness, 
                                                                     "clustering_coefficient" = function(x){
-                                                                      trans <- igraph::transitivity(x, type = "local", vids = igraph::V(x) ,isolates = "zero");
+                                                                      trans <- igraph::transitivity(x, type = "local", isolates = "zero")[igraph::V(x)];
                                                                       names(trans) <- igraph::V(x)$name;
                                                                       return(trans)
                                                                     },
