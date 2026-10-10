@@ -77,56 +77,101 @@ correlation_analyze <- function(network,
 #' elk_correlation_analysis <- correlation_analyze(elk_network_2010)
 #' plot(elk_correlation_analysis)
 #' }
-plot.list_correlation_matrices <- function(x,...){
-  
+plot.list_correlation_matrices <- function(x, ...) {
+
   correlation_results <- x
-  
-  if(!inherits(correlation_results,"list_correlation_matrices")){
+
+  if (!inherits(correlation_results, "list_correlation_matrices")) {
     stop("List passed is not of class 'list_correlation_matrices'")
   }
-  
 
-  for(i in 1:length(correlation_results)){
+  ans=list()
+  for (i in seq_along(correlation_results)) {
 
-    #To include mean and standard deviation in the plots
-    mean_correlation = apply(correlation_results[[i]], 2, mean, na.rm = TRUE)
-    sd_correlation = apply(correlation_results[[i]], 2, stats::sd, na.rm = TRUE)
-    sample_proportions <- as.integer(colnames(correlation_results[[1]]))/100
-    
-    #Remove the index where mean or sd is NA
-    ind_remove <- unique(c(which(is.na(mean_correlation)), which(is.na(sd_correlation))))
-    
-    if (length(ind_remove) > 0){
-      mean_correlation = mean_correlation[-ind_remove]
-      sd_correlation = sd_correlation[-ind_remove]
+    mean_correlation <- apply(
+      correlation_results[[i]],
+      2,
+      mean,
+      na.rm = TRUE
+    )
+
+    sd_correlation <- apply(
+      correlation_results[[i]],
+      2,
+      stats::sd,
+      na.rm = TRUE
+    )
+
+    sample_proportions <-
+      as.integer(colnames(correlation_results[[i]])) / 100
+
+    ind_remove <- unique(
+      c(
+        which(is.na(mean_correlation)),
+        which(is.na(sd_correlation))
+      )
+    )
+
+    if (length(ind_remove) > 0) {
+      mean_correlation <- mean_correlation[-ind_remove]
+      sd_correlation <- sd_correlation[-ind_remove]
       sample_proportions <- sample_proportions[-ind_remove]
-    } else{
-      sample_proportions <- sample_proportions
     }
 
-    plot(sample_proportions, mean_correlation,
-         type = 'n',
-         xlab = "Proportion of Individuals in Subsample",
-         ylab = "Correlation",
-         main = names(correlation_results)[i],
-         ylim = c(min(0, mean_correlation - sd_correlation, na.rm = TRUE), 1))
+    upper_limit <- pmin(mean_correlation + sd_correlation, 1)
+    lower_limit <- pmax(mean_correlation - sd_correlation, -1)
 
-    upper_limit <- mean_correlation + sd_correlation
-    upper_limit[upper_limit > 1] <- 1
+    plot_df <- data.frame(
+      sample_proportions = sample_proportions,
+      mean_correlation = mean_correlation,
+      lower_limit = lower_limit,
+      upper_limit = upper_limit
+    )
 
-    lower_limit <- mean_correlation - sd_correlation
-    lower_limit[lower_limit < -1] <- -1
+    p <- ggplot2::ggplot(
+      plot_df,
+      ggplot2::aes(x = sample_proportions)
+    ) +
+      ggplot2::geom_ribbon(
+        ggplot2::aes(
+          ymin = lower_limit,
+          ymax = upper_limit
+        ),
+        fill = "grey80",
+        alpha = 0.7
+      ) +
+      ggplot2::geom_line(
+        ggplot2::aes(y = mean_correlation),
+        colour = "black",
+        linewidth = 1
+      ) +
+      ggplot2::geom_line(
+        ggplot2::aes(y = upper_limit),
+        colour = "red",
+        linetype = "dashed"
+      ) +
+      ggplot2::geom_line(
+        ggplot2::aes(y = lower_limit),
+        colour = "red",
+        linetype = "dashed"
+      ) +
+      ggplot2::labs(
+        x = "Proportion of Individuals in Subsample",
+        y = "Correlation",
+        title = names(correlation_results)[i]
+      ) +
+      ggplot2::coord_cartesian(
+        ylim = c(
+          min(0, lower_limit, na.rm = TRUE),
+          1
+        )
+      ) +
+      ggplot2::theme_bw()
 
-    graphics::polygon(c(rev(sample_proportions), sample_proportions),
-            c(rev(upper_limit), lower_limit),
-            col = 'grey80', border = NA)
-    graphics::lines(sample_proportions, mean_correlation,
-          col = 'black')
-    graphics::lines(c(rev(sample_proportions), sample_proportions),
-          c(rev(upper_limit), lower_limit),
-          lty = 'dashed',
-          col = 'red')
+    print(p)
+    ans[[i]]=p
   }
+  return(ans)
 }
 
 

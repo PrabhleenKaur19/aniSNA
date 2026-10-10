@@ -27,8 +27,10 @@ export(plot_network)
 export(regression_slope_analyze)
 export(subsampled_network_metrics)
 export(subsampled_permuted_network_metrics)
-importFrom(Rcpp,evalCpp)
-importFrom(Rcpp,sourceCpp)
+importFrom(Rcpp,
+  evalCpp,
+  sourceCpp
+)
 importFrom(magrittr,"%>%")
 importFrom(rlang,.data)
 useDynLib(aniSNA, .registration = TRUE)

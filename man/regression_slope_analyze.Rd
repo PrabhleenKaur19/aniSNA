@@ -8,11 +8,13 @@ regression_slope_analyze(
   network,
   n_simulations = 10,
   subsampling_proportion = c(0.1, 0.3, 0.5, 0.7, 0.9),
-  network_metrics_functions_list = c(degree = function(net, sub_net) igraph::degree(net)[igraph::V(sub_net)$name], 
-				     strength = function(net, sub_net) igraph::strength(net)[igraph::V(sub_net)$name],
-				     betweenness = function(net, sub_net) igraph::betweenness(net)[igraph::V(sub_net)$name], 
-				     clustering_coefficient = function(net, sub_net) igraph::transitivity(net, type = "local")[igraph::V(sub_net)$name], 
-				     eigenvector_centrality = function(net, sub_net) igraph::eigen_centrality(net)$vector[igraph::V(sub_net)$name])
+  network_metrics_functions_list = c(degree = function(net, sub_net)
+    igraph::degree(net)[igraph::V(sub_net)$name], strength = function(net, sub_net)
+    igraph::strength(net)[igraph::V(sub_net)$name], betweenness = function(net, sub_net)
+    igraph::betweenness(net)[igraph::V(sub_net)$name], clustering_coefficient =
+    function(net, sub_net) igraph::transitivity(net, type = "local",
+    )[igraph::V(sub_net)$name], eigenvector_centrality = function(net, sub_net)
+    igraph::eigen_centrality(net)$vector[igraph::V(sub_net)$name])
 )
 }
 \arguments{

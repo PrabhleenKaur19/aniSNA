@@ -34,14 +34,38 @@ get_network_summary <- function(network) {
 #' @examples 
 #' data(elk_network_2010)
 #' plot_network(elk_network_2010)
-plot_network <- function(species_network, seed = 1){
+plot_network <- function(species_network, seed = 1, size=7, fill="white", colour="black", ...) {
+
   set.seed(seed)
-  layout <- igraph::layout.fruchterman.reingold(species_network)
-  plot(species_network,
-       vertex.size = 7, 
-       vertex.frame.color = "black",
-       main = "Network structure",
-       vertex.label = NA, 
-       edge.lty=c("solid"),
-       layout = layout)
+
+  layout <- igraph::layout_with_fr(
+    species_network
+  )
+
+  ggraph::ggraph(
+    species_network,
+    layout = "manual",
+    x = layout[, 1],
+    y = layout[, 2]
+  ) +
+    ggraph::geom_edge_link(
+      linetype = "solid",
+      colour = "grey50"
+    ) +
+    ggraph::geom_node_point(
+      size = size,
+      shape = 21,
+      stroke = 0.5,
+      fill = fill,
+      colour = colour
+    ) +
+    ggplot2::labs(
+      title = "Network structure"
+    ) +
+    ggplot2::theme_void() +
+    ggplot2::theme(
+      plot.title = ggplot2::element_text(
+        hjust = 0.5
+      )
+    )
 }

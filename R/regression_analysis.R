@@ -81,45 +81,66 @@ regression_slope_analyze <- function(network,
 #' elk_regression_analysis <- regression_slope_analyze(elk_network_2010)
 #' plot(elk_regression_analysis)
 #' }
-plot.list_regression_matrices <- function(x,...){
-  
+plot.list_regression_matrices <- function(x, ...) {
+
   regression_results <- x
-  
-  if(!inherits(regression_results,"list_regression_matrices")){
+
+  if (!inherits(regression_results, "list_regression_matrices")) {
     stop("List passed is not of class 'list_regression_matrices'")
   }
-  
-  
-  for(i in 1:length(regression_results)){
-    mean_slope = apply(regression_results[[i]], 2, mean, na.rm = TRUE)
-    sample_proportions <- as.integer(colnames(regression_results[[1]]))/100
-    
-    #Remove the index where mean_slope is NA
+
+  ans=list()
+  for (i in seq_along(regression_results)) {
+
+    mean_slope <- apply(regression_results[[i]], 2, mean, na.rm = TRUE)
+    sample_proportions <- as.integer(colnames(regression_results[[i]])) / 100
+
+    # Remove NA values
     ind_remove <- which(is.na(mean_slope))
-    if (length(ind_remove) > 0){
-      mean_slope = mean_slope[-ind_remove]
+    if (length(ind_remove) > 0) {
+      mean_slope <- mean_slope[-ind_remove]
       sample_proportions <- sample_proportions[-ind_remove]
-      
-    } else{
-      sample_proportions <- sample_proportions
     }
-    
-    plot(sample_proportions, rep(1, length(sample_proportions)), 
-         type = 'l',
-         col = "black",
-         lty = "dashed",
-         main = paste(" Slope of Linear Regression for \n", stringr::str_to_sentence(names(regression_results), locale = "en")[i],sep = ""),
-         ylim = c(min(0, mean_slope), 1),
-         xlim = (c(0,1)),
-         ylab = "Slope",
-         xlab = "Proportion of Individuals in Subsample")
-    
-    graphics::lines(sample_proportions, sample_proportions, 
-          col = 'black',
-          lty = "dashed")
-    
-    graphics::lines(sample_proportions, mean_slope, lwd = 2,
-          col = "red")
-    
+
+    plot_df <- data.frame(
+      sample_proportions = sample_proportions,
+      mean_slope = mean_slope
+    )
+
+    p <- ggplot2::ggplot(
+      plot_df,
+      ggplot2::aes(x = sample_proportions)
+    ) +
+      ggplot2::geom_abline(
+        slope = 1,
+        intercept = 0,
+        linetype = "dashed",
+        colour = "black"
+      ) +
+      ggplot2::geom_line(
+        ggplot2::aes(y = mean_slope),
+        colour = "red",
+        linewidth = 1.2
+      ) +
+      ggplot2::labs(
+        title = paste0(
+          "Slope of Linear Regression for\n",
+          stringr::str_to_sentence(
+            names(regression_results)[i],
+            locale = "en"
+          )
+        ),
+        x = "Proportion of Individuals in Subsample",
+        y = "Slope"
+      ) +
+      ggplot2::coord_cartesian(
+        xlim = c(0, 1),
+        ylim = c(min(0, mean_slope), 1)
+      ) +
+      ggplot2::theme_bw()
+
+    print(p)
+    ans[[i]]=p
   }
+  return(ans)
 }
