@@ -4,7 +4,14 @@
 \alias{plot_network}
 \title{Visualize Animal Network}
 \usage{
-plot_network(species_network, seed = 1)
+plot_network(
+  species_network,
+  seed = 1,
+  size = 7,
+  fill = "white",
+  colour = "black",
+  ...
+)
 }
 \arguments{
 \item{species_network}{An igraph graph object consisting of observed network.}

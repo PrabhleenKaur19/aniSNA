@@ -4,7 +4,7 @@
 \alias{plot.list_node_level_CI}
 \title{To plot the results for node-level confidence intervals}
 \usage{
-\method{plot}{list_node_level_CI}(x, ...)
+\method{plot}{list_node_level_CI}(x, num.show = 30, ...)
 }
 \arguments{
 \item{x}{A list of dataframes obtained from node_level_CI function.}

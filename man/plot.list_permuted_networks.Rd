@@ -10,6 +10,7 @@
   network_metrics_functions_list = c(edge_density = function(x) igraph::edge_density(x),
     diameter = function(x) igraph::diameter(x, weights = NA), transitivity = function(x)
     igraph::transitivity(x)),
+  nbins = 10,
   ...
 )
 }
