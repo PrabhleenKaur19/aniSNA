@@ -50,6 +50,7 @@ obtain_permuted_network_versions <- function(species_raw, temporal_thresh, spati
 #'  Default = c("edge_density" = function(x) igraph::edge_density(x), "diameter" = function(x) igraph::diameter(x, weights = NA), "transitivity" = function(x) igraph::transitivity(x))
 #' @param nbins How many bins to use for the histograms.
 #'
+#' @param nbins number of bins for histogram.
 #' @param ... Further arguments are ignored.
 #'
 #' @return No return value, called for side effects.

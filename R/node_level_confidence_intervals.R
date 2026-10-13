@@ -69,7 +69,7 @@ node_level_CI <- function(network,
 #' To plot the results for node-level confidence intervals
 #'
 #' @param x A list of dataframes obtained from node_level_CI function.
-#' @param num.show how many of the nodes to label on the x-axis. 
+#' @param num.show How many individuals to label on the x-axis. 
 #' @param ... Further arguments are ignored.
 #'
 #' @return No return value, called for side effects. 
