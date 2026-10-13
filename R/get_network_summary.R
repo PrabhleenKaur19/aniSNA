@@ -27,6 +27,10 @@ get_network_summary <- function(network) {
 #'
 #' @param species_network An igraph graph object consisting of observed network.
 #' @param seed Seed to be set for layout.
+#' @param size Size of the nodes in the network plot. 
+#' @param fill Colour for the nodes in the network plot. 
+#' @param colour Colour for the edges in the network plot.
+#' @param ... Further arguments are ignored.
 #'
 #' @return No return value, called for side effects. The plots depict a visualisation of network structure. 
 #' @export

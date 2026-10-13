@@ -48,6 +48,7 @@ obtain_permuted_network_versions <- function(species_raw, temporal_thresh, spati
 #' @param species_original_network An igraph object which is the original network
 #' @param network_metrics_functions_list A list consisting of function definitions of the network metrics that the user wants to evaluate. Each element in the list should have an assigned name.
 #'  Default = c("edge_density" = function(x) igraph::edge_density(x), "diameter" = function(x) igraph::diameter(x, weights = NA), "transitivity" = function(x) igraph::transitivity(x))
+#' @param nbins How many bins to use for the histograms.
 #'
 #' @param ... Further arguments are ignored.
 #'
