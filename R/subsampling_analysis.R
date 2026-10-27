@@ -110,7 +110,7 @@ plot.Subsampled_Network_Metrics <- function(
 
     plot_df_long <- tidyr::pivot_longer(
       plot_df,
-      cols = everything(),
+      cols = dplyr::everything(),
       names_to = "SubsampleSize",
       values_to = "Value"
     )
@@ -120,8 +120,8 @@ plot.Subsampled_Network_Metrics <- function(
     p <- ggplot2::ggplot(
       plot_df_long,
       ggplot2::aes(
-        x = SubsampleSize,
-        y = Value
+        x = .data$SubsampleSize,
+        y = .data$Value
       )
     ) +
       ggplot2::geom_boxplot(

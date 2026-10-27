@@ -102,12 +102,12 @@ plot.bootstrapped_pvalue_matrix <- function(x, ...) {
     5
   )
 
-  plot_df <- as.data.frame(bootstrapped_results)
+  plot_df <- data.frame(bootstrapped_results[,]) 
   plot_df$SampleSize <- subsample_size
 
   plot_df_long <- tidyr::pivot_longer(
     plot_df,
-    cols = -SampleSize,
+    cols = 1:(ncol(plot_df)-1),
     names_to = "Metric",
     values_to = "PValue"
   )
@@ -115,9 +115,9 @@ plot.bootstrapped_pvalue_matrix <- function(x, ...) {
   p <- ggplot2::ggplot(
     plot_df_long,
     ggplot2::aes(
-      x = SampleSize,
-      y = PValue,
-      colour = Metric
+      x = .data$SampleSize,
+      y = .data$PValue,
+      colour = .data$Metric
     )
   ) +
     ggplot2::geom_line(linewidth = 1) +

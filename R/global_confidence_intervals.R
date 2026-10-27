@@ -103,8 +103,8 @@ plot.Width_CI_matrix <- function(x, ...) {
     p <- ggplot2::ggplot(
       plot_df,
       ggplot2::aes(
-        x = sample_size,
-        y = ci_width
+        x = .data$sample_size,
+        y = .data$ci_width
       )
     ) +
       ggplot2::geom_line(

@@ -100,7 +100,7 @@ plot.list_permuted_networks <- function(
 
     p <- ggplot2::ggplot(
       plot_df,
-      ggplot2::aes(x = MetricValue)
+      ggplot2::aes(x = .data$MetricValue)
     ) +
       ggplot2::geom_histogram(
         bins = nbins,

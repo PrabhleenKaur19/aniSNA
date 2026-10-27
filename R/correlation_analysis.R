@@ -130,28 +130,28 @@ plot.list_correlation_matrices <- function(x, ...) {
 
     p <- ggplot2::ggplot(
       plot_df,
-      ggplot2::aes(x = sample_proportions)
+      ggplot2::aes(x = .data$sample_proportions)
     ) +
       ggplot2::geom_ribbon(
         ggplot2::aes(
-          ymin = lower_limit,
-          ymax = upper_limit
+          ymin = .data$lower_limit,
+          ymax = .data$upper_limit
         ),
         fill = "grey80",
         alpha = 0.7
       ) +
       ggplot2::geom_line(
-        ggplot2::aes(y = mean_correlation),
+        ggplot2::aes(y = .data$mean_correlation),
         colour = "black",
         linewidth = 1
       ) +
       ggplot2::geom_line(
-        ggplot2::aes(y = upper_limit),
+        ggplot2::aes(y = .data$upper_limit),
         colour = "red",
         linetype = "dashed"
       ) +
       ggplot2::geom_line(
-        ggplot2::aes(y = lower_limit),
+        ggplot2::aes(y = .data$lower_limit),
         colour = "red",
         linetype = "dashed"
       ) +

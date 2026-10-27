@@ -36,8 +36,8 @@ get_spatial_threshold <- function(species_interactions, interval_size) {
   p <- ggplot2::ggplot(
     nobs_wrt_distance,
     ggplot2::aes(
-      x = distance,
-      y = interactions_count
+      x = .data$distance,
+      y = .data$interactions_count
     )
   ) +
     ggplot2::geom_line(

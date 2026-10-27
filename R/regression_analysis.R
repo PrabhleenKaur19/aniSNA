@@ -109,7 +109,7 @@ plot.list_regression_matrices <- function(x, ...) {
 
     p <- ggplot2::ggplot(
       plot_df,
-      ggplot2::aes(x = sample_proportions)
+      ggplot2::aes(x = .data$sample_proportions)
     ) +
       ggplot2::geom_abline(
         slope = 1,
@@ -118,7 +118,7 @@ plot.list_regression_matrices <- function(x, ...) {
         colour = "black"
       ) +
       ggplot2::geom_line(
-        ggplot2::aes(y = mean_slope),
+        ggplot2::aes(y = .data$mean_slope),
         colour = "red",
         linewidth = 1.2
       ) +

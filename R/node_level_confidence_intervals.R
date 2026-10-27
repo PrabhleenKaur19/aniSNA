@@ -102,13 +102,13 @@ plot.list_node_level_CI <- function(x, num.show=30, ...) {
       plot_df,
       ggplot2::aes(
         x = 1:nrow(plot_df), # use this instead of factor(node_number) as ggplot will reorder otherwise
-        y = metric_value
+        y = .data$metric_value
       )
     ) +
       ggplot2::geom_errorbar(
         ggplot2::aes(
-          ymin = lower_CI,
-          ymax = upper_CI
+          ymin = .data$lower_CI,
+          ymax = .data$upper_CI
         ),
         width = 0.2,
         colour = "black"
@@ -129,7 +129,7 @@ plot.list_node_level_CI <- function(x, num.show=30, ...) {
           vjust = 0.5,
           hjust = 1
         )
-      ) + scale_x_continuous(breaks=ss,labels=plot_df$node_number[ss])
+      ) + ggplot2::scale_x_continuous(breaks=ss,labels=plot_df$node_number[ss])
 
     print(p)
     ans[[j]]=p
